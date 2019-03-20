@@ -29,10 +29,6 @@ get "/add" do
   erb :add
 end
 
-get "/error" do
-  erb :error
-end
-
 def store_name(filename, string)
   File.open(filename, "a+") do |file|
     file.puts([string])
@@ -44,18 +40,13 @@ def authentic(username)
   user.include?(username)
 end
 
-# get "/access/:name" do
-#   @name = params["name"]
-#   erb :access
-# end
-
 post "/access" do
   @name = params["name"]
   # store_name("user.txt", @name)
   if authentic(@name)
     redirect "/dashboard/#{@name}"
   else
-    redirect "/error"
+    redirect "/access"
   end
 end
 
