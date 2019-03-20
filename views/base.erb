@@ -18,9 +18,9 @@
       </div>
       <div>
         <h4>Register</h4>
-        <form action="">
+        <form action="/signup" method="POST">
           <label for="">Usuario</label>
-          <input type="text" placeholder="Usuario" />
+          <input type="text" placeholder="Usuario" value="<%=@newuser%>" pattern="^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$"/>
           <input type="submit" />
         </form>
       </div>

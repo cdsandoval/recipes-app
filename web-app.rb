@@ -50,4 +50,16 @@ post "/access" do
   end
 end
 
+def create_user(filename,name)
+    File.open(filename, "a+") do |file|
+    file.puts(name)
+    end
+end
+
+post "/signup" do
+    @newuser = params["newuser"]
+    create_user("users.txt",@newuser) 
+    redirect "/dashboard/#{@newuser}"
+end
+
 set :port, 8000
