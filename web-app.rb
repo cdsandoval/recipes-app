@@ -65,8 +65,8 @@ def create_user(filename,name)
 end
 
 post "/signup" do
-    @newuser = params["newuser"]
-    create_user("user.txt",@newuser)
+    @newuser = params["newuser"].downcase! 
+    create_user("user.txt",@newuser) 
     redirect "/dashboard/#{params["newuser"]}"
     puts
 end
