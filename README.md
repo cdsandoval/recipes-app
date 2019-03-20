@@ -1,5 +1,13 @@
 # Recipes App - Ruby Module Evaluation
 
+## Team
+
+- Cesar
+- Carlos S.
+- **Diego C. - Tech Leader**
+- Valeria
+- **Paul - Coordinator**
+
 ## Instructions
 
 Welcome to the evaluation for the Ruby module, where we’ll emulate the workflow of a software project. You will be assigned to a 4-5 people team and given an app to be build. Each group will have a different application, with different requirements. So no two projects will be the same.
@@ -22,6 +30,7 @@ Welcome to the evaluation for the Ruby module, where we’ll emulate the workflo
 There are 2 main components to this exercise, with a total of 5 evaluation criteria:
 
 - Group evaluation:
+
   - **Functionality / Code performance**
     - Does the code work as expected?
     - Does the app present any errors during its execution?
