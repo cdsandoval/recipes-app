@@ -8,6 +8,11 @@
 - Valeria
 - **Paul - Coordinator**
 
+## Methodology
+
+- The branches are named with the number of the issue which will be resolved.
+- All members will create their issue to resolve a specific task.
+
 ## Instructions
 
 Welcome to the evaluation for the Ruby module, where we’ll emulate the workflow of a software project. You will be assigned to a 4-5 people team and given an app to be build. Each group will have a different application, with different requirements. So no two projects will be the same.
