@@ -1,5 +1,6 @@
 require "sinatra"
 require "erb"
+require "sinatra/reloader"
 
 get "/" do
   erb :index, { :layout => :base }
@@ -17,16 +18,12 @@ get "/admin" do
   erb :admin
 end
 
-get "/search" do
-  erb :search
+get "/recipe" do
+  erb :recipe, { :layout => :base }
 end
 
-get "/recipes" do
-  erb :recipes
-end
-
-get "/add" do
-  erb :add
+get "/add-recipe" do
+  erb :add_recipe, { :layout => :base }
 end
 
 def store_name(filename, string)
@@ -48,6 +45,19 @@ post "/access" do
   else
     redirect "/access"
   end
+end 
+
+def create_user(filename,name)
+    File.open(filename, "a+") do |file|
+    file.puts([name])
+    end
+end
+
+post "/signup" do
+    @newuser = params["newuser"]
+    create_user("user.txt",@newuser) 
+    redirect "/dashboard/#{params["newuser"]}"
+    puts
 end
 
 set :port, 8000
