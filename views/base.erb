@@ -10,10 +10,10 @@
     <header>
       <div>
         <h4>Login</h4>
-        <form action="">
+        <form action="/access" method="POST">
           <label for="">Usuario</label>
-          <input type="text" placeholder="Usuario" />
-          <input type="submit" />
+          <input type="text" id="uname" name="name" value="<%= @name %>" placeholder="Existing User" />
+          <input type="submit" value="Enter"/>
         </form>
       </div>
       <div>
@@ -24,7 +24,7 @@
           <input type="submit" />
         </form>
       </div>
-      <p>Hola Paul<p>
+      <p><h1> hola soy <%= params[:name] %></h1><p>
     </header>
     <hr>
     <br />
