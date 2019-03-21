@@ -97,4 +97,14 @@ end
 
 
 
+post '/save_image' do
+  @filename = params[:file][:filename]
+  file = params[:file][:tempfile]
+  File.open("./public/images/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
+
+  erb :recipe
+end
+
 set :port, 8000
