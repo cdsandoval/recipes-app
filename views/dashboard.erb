@@ -9,16 +9,21 @@
 </form>
 
 
+
 <% @recipes.each do |key,recipe| %>
-<h1><%= recipe["name"]%></h1>
-<img src = "<%= recipe["url_image"] %>">
-<p>PREPARATION TIME: <%= recipe["duration_time"]%> minutes</p>
-<p>PREPARATION: <%= recipe["preparation"] %></p>
-<p>DIFFICULTY: <%= recipe["difficult"]%></p>
-<p>QUALITY: <%= recipe["quality"] %></p>
-<form action="/delete-recipe" method="POST">
-  <input type="hidden" name="id" value="<%=key%>" />
-  <input type="hidden" name="name" value="<%= params[:name]%>"/>
-  <input type="submit" value="Delete" />
-</form>
+  <% @users.each do |key1,value|%>
+    <% if value["name"] == params[:name] && value["recipes"].include?(key.to_i) %>
+      <h1><%= recipe["name"]%></h1>
+      <img src = "<%= recipe["url_image"] %>">
+      <p>PREPARATION TIME: <%= recipe["duration_time"]%>  minutes</p>
+      <p>PREPARATION: <%= recipe["preparation"] %></p>
+      <p>DIFFICULTY: <%= recipe["difficult"]%></p>
+      <p>QUALITY: <%= recipe["quality"] %></p>
+      <form action="/delete-recipe" method="POST" onsubmit="return confirm('Are you sure you want to delete the following recipe?')">
+        <input type="hidden" name="id" value="<%=key%>" />
+        <input type="hidden" name="name" value="<%= params[:name]%>"/>
+        <input type="submit" value="Delete" />
+      </form> 
+    <% end %>
+  <% end %>
 <% end %>
