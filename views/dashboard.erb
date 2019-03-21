@@ -15,3 +15,7 @@
   <input type="hidden" name="id" id="" value="<%= @id_recipe%>" />
   <input type="submit" value="Delete" />
 </form>
+
+<% @recipes.each do |recipe| %>
+<h1><%=recipe["name"]%></h1>
+<% end %>

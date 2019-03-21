@@ -7,11 +7,11 @@ asda
 qwqw
 wqwqw
 wqwqwqw
-<<<<<<< HEAD
+
 sergio
-paul
+
+sergio
+
+
 
 hola
-=======
-
->>>>>>> Add Signup

@@ -1,6 +1,8 @@
 require "sinatra"
 require "erb"
 require "sinatra/reloader"
+require "json"
+
 
 get "/" do
   erb :index, { :layout => :base }
@@ -11,6 +13,7 @@ get "/access" do
 end
 
 get "/dashboard/:name" do
+    @recipes = JSON.parse(  File.read("model/recipes.json"))  
   erb :dashboard, { :layout => :base }
 end
 
