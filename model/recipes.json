@@ -2,7 +2,7 @@
   "1": {
     "id": 1,
     "name": "Locro",
-    "difficult": "Easy",
+    "difficult": [2, 2],
     "duration_time": [10, 20, 45, 10, 45, 1, 6],
     "url_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4ZQOFDu9v_7zqSDFcYua6XqhHKMTs4nGJP_GUdegZsFjBhS0",
     "quality": [1, 3, 3, 3, 1],
@@ -12,10 +12,10 @@
   "2": {
     "id": 2,
     "name": "pollo a la brasa",
-    "difficult": "Easy",
+    "difficult": [3],
     "duration_time": [30, 40],
     "url_image": "/image/locro.jpg",
-    "quality": [3],
+    "quality": [3, 2],
     "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
     "author": 1
   }
