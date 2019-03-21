@@ -19,6 +19,10 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus dolor architecto quos est nesciunt, magnam ad quod aut iure veniam culpa corporis asperiores voluptatum exercitationem quidem dolorem eaque mollitia tempora.</p>
   </div>
   %>
+
+<h1>The delicious <%= @filename %></h1>
+<img src="<%= "/images/#{@filename}" %>" width="300" height="150" />
+
  <% @recipes.each do |recipe| %>
    <h1><%= recipe["name"] %></h1>
     <form action="/recipe-quality" method="POST">
@@ -48,3 +52,5 @@
    <p>PREPARACION: <%= recipe["preparation"] %></p>
    <img src = "<%= recipe["url_image"] %>">
  <% end %>
+
+
