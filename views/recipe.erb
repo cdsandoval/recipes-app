@@ -23,7 +23,7 @@
 <h1>The delicious <%= @filename %></h1>
 <img src="<%= "/images/#{@filename}" %>" width="300" height="150" />
 
- <% @recipes.each do |recipe| %>
+ <% @recipes.each do |key, recipe| %>
    <h1><%= recipe["name"] %></h1>
     <form action="/recipe-quality" method="POST">
    --- CALIDAD:
@@ -38,7 +38,7 @@
     </form>
 
    <form action="/recipe-difficulty" method="POST">
-   --- DIFICULTAD:
+   --- DIFFICULTY:
     <select id="dificultad" name="difficulty">
       <option value="">--Pon tu nivel de dificultad--</option>
       <option value="easy" <% if recipe["difficult"]== "easy" %>selected<% end %>>Easy</option>
@@ -48,8 +48,14 @@
     <input type="hidden" name="id" value="<%=recipe["id"]%>">
     <input type="submit">
     </form>
-   <p>TIEMPO: <%= recipe["duration_time"]%> minutos</p>
-   <p>PREPARACION: <%= recipe["preparation"] %></p>
+   <p>PREPARATION TIME: <%= recipe["duration_time"]%> minutos</p>
+   Had a different preparation time?
+   <form action="/recipe-duration-time" method="POST">
+    <input type="number" name="duration-time" placeholder="Enter your time">
+    <input type="submit" >
+    <input type="hidden" name="id" value="<%=recipe["id"]%>">
+   </form> 
+   <p>PREPARATION: <%= recipe["preparation"] %></p>
    <img src = "<%= recipe["url_image"] %>">
  <% end %>
 
