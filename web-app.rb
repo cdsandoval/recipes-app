@@ -13,7 +13,12 @@ get "/access" do
 end
 
 get "/dashboard/:name" do
-    @recipes = JSON.parse(  File.read("model/recipes.json"))  
+  @word = params[:name]
+  if @word.include? "search"  
+    @recipes =  JSON.parse(File.read("model/search.json"))
+  else
+    @recipes = JSON.parse( File.read("model/recipes.json"))  
+  end
   erb :dashboard, { :layout => :base }
 end
 
@@ -46,6 +51,10 @@ def store_name(filename, string)
   end
 end
 
+def read_db()
+  JSON.parse(  File.read("model/recipes.json"))  
+end
+
 def authentic(username)
   user = File.read("user.txt")
   user.include?(username)
@@ -67,11 +76,22 @@ def create_user(filename,name)
     end
 end
 
+def delete_recipe(id)
+    @recipe_list = read_db()
+    @recipe_list.delete(id)
+    create_search("model/recipes.json",@recipe_list)
+end
+
+def create_search(filename,name)
+  File.open(filename, "w+") do |file|
+  file.puts(name.to_json)
+  end
+end
+
 post "/signup" do
     @newuser = params["newuser"].downcase! 
     create_user("user.txt",@newuser) 
-    redirect "/dashboard/#{params["newuser"]}"
-    puts
+    redirect "/dashboard/#{params["newuser"]}"    
 end
 
 def prom(numbers)
@@ -117,6 +137,19 @@ post '/save_image' do
   end
 
   erb :recipe
+post "/delete-recipe" do
+  @recipe_id = params["id"]
+  @name = params["name"]
+  delete_recipe(@recipe_id)  
+  redirect "/dashboard/#{@name}"
+end
+
+post "/search" do
+  @recipe_title = params["recipe_title"]
+  @recipe_list = read_db()  
+  @recipes = @recipe_list.select {|key,value| value["name"].include? @recipe_title }
+  create_search("model/search.json",@recipes)
+  redirect "/dashboard/search?#{@recipe_title}"
 end
 
 set :port, 8000

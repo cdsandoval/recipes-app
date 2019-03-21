@@ -1,21 +1,24 @@
-<form action="/signup" method="POST">
+<form action="/" method="POST">
   <input type="submit" value="Add new recipe" />
 </form>
 
-<h1>Recipes title</h1>
-<form action="/delete-recipe">
-  <input type="hidden" name="id" id="" value="<%= @id_recipe%>" />
-  <input type="submit" value="Delete" />
+<form action="/search" method="POST">
+  <input type="text" name="recipe_title">
+    <input type="hidden" name="name" value="<%= params[:name]%>"/>
+  <input type="submit" value="Search"/>  
 </form>
 
-<br /><br />
 
-<h1>Recipes title</h1>
-<form action="/delete-recipe">
-  <input type="hidden" name="id" id="" value="<%= @id_recipe%>" />
+<% @recipes.each do |key,recipe| %>
+<h1><%= recipe["name"]%></h1>
+<img src = "<%= recipe["url_image"] %>">
+<p>PREPARATION TIME: <%= recipe["duration_time"]%> minutes</p>
+<p>PREPARATION: <%= recipe["preparation"] %></p>
+<p>DIFFICULTY: <%= recipe["difficult"]%></p>
+<p>QUALITY: <%= recipe["quality"] %></p>
+<form action="/delete-recipe" method="POST">
+  <input type="hidden" name="id" value="<%=key%>" />
+  <input type="hidden" name="name" value="<%= params[:name]%>"/>
   <input type="submit" value="Delete" />
 </form>
-
-<% @recipes.each do |recipe| %>
-<h1><%=recipe["name"]%></h1>
 <% end %>
