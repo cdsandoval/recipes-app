@@ -19,6 +19,7 @@ get "/admin" do
 end
 
 get "/recipe" do
+  @recipes = JSON.parse(  File.read("model/recipes.json"))
   erb :recipe, { :layout => :base }
 end
 
@@ -59,5 +60,41 @@ post "/signup" do
     redirect "/dashboard/#{params["newuser"]}"
     puts
 end
+
+get "/recipe/:difficult" do
+  list_recipe = JSON.parse(  File.read("model/recipes.json"))
+  @recipes = list_recipe.select {|recipe| recipe["difficult"] == params["difficult"]}
+  erb :recipe, { :layout => :base }
+end
+
+post "/recipe-difficulty" do
+  var = JSON.parse(  File.read("model/recipes.json"))
+  var = var.map {|recipe|
+    if recipe["id"] == params["id"].to_i
+      recipe["difficult"] = params["difficulty"]
+    end
+    recipe
+  }
+  
+  var = JSON.generate(var)
+  File.write("model/recipes.json", var)
+  redirect "/recipe"
+end
+
+post "/recipe-quality" do
+  var = JSON.parse(  File.read("model/recipes.json"))
+  var = var.map {|recipe|
+    if recipe["id"] == params["id"].to_i
+      recipe["quality"] = params["quality"].to_i
+    end
+    recipe
+  }
+  
+  var = JSON.generate(var)
+  File.write("model/recipes.json", var)
+  redirect "/recipe"
+end
+
+
 
 set :port, 8000
