@@ -46,7 +46,7 @@ post "/access" do
   else
     redirect "/access"
   end
-end 
+end
 
 def create_user(filename,name)
     File.open(filename, "a+") do |file|
@@ -56,7 +56,7 @@ end
 
 post "/signup" do
     @newuser = params["newuser"]
-    create_user("user.txt",@newuser) 
+    create_user("user.txt",@newuser)
     redirect "/dashboard/#{params["newuser"]}"
     puts
 end
@@ -75,7 +75,7 @@ post "/recipe-difficulty" do
     end
     recipe
   }
-  
+
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
   redirect "/recipe"
@@ -89,7 +89,7 @@ post "/recipe-quality" do
     end
     recipe
   }
-  
+
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
   redirect "/recipe"

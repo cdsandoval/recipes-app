@@ -1,20 +1,22 @@
-[
-  {
+{
+  "1": {
     "id": 1,
     "name": "Locro",
     "difficult": "easy",
     "duration_time": 30,
-    "url_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4ZQOFDu9v_7zqSDFcYua6XqhHKMTs4nGJP_GUdegZsFjBhS0",
-    "quality": 1,
-    "preparation": "trituras un zapallo y le metes muchas verduras, fin."
+    "url_image": "/image/locro.jpg",
+    "quality": 3,
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+    "author": 1
   },
-  {
+  "2": {
     "id": 2,
-    "name": "Aji de gallina",
-    "difficult": "medium",
-    "duration_time": 35,
-    "url_image": "https://scontent.flim19-1.fna.fbcdn.net/v/t1.15752-9/55557103_802140163486187_7418779808760332288_n.jpg?_nc_cat=103&_nc_ht=scontent.flim19-1.fna&oh=c81c6734286fac59938cbe04a49498ed&oe=5D13D9BE",
-    "quality": 2,
-    "preparation": "poner un aji en una gallina y pones arroz en la arrocera, fin."
+    "name": "pollo a la brasa",
+    "difficult": "Easy",
+    "duration_time": 30,
+    "url_image": "/image/locro.jpg",
+    "quality": 3,
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+    "author": 1
   }
-]
+}
