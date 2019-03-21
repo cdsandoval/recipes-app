@@ -21,11 +21,16 @@ end
 get "/recipe" do
   @recipes = JSON.parse(  File.read("model/recipes.json"))  
   @recipes = @recipes.each do |key, recipe|
-    recipe["quality"] = prom(recipe["quality"])
+    recipe["quality"] = prom(recipe["quality"]).to_i
     recipe["duration_time"] = prom(recipe["duration_time"])
+    recipe["difficult"] = prom(recipe["difficult"]).to_i
     recipe
   end
   erb :recipe, { :layout => :base }
+end
+
+def prom(numbers)
+  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
 end
 
 get "/add-recipe" do
@@ -65,6 +70,7 @@ post "/signup" do
     redirect "/dashboard/#{params["newuser"]}"
     puts
 end
+
 def prom(numbers)
   numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
 end
@@ -77,22 +83,15 @@ end
 
 post "/recipe-difficulty" do
   var = JSON.parse(  File.read("model/recipes.json"))
-  var = var.map {|key, recipe|
-    if recipe["id"] == params["id"].to_i
-      recipe["difficult"] = params["difficulty"]
-    end
-    recipe
-  }
-
+  var[params["id"]]["difficult"] << params["difficulty"].to_i
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
   redirect "/recipe"
 end
 
-post "/recipe-quality" do
+post "/recipe-qualitly" do
   var = JSON.parse(  File.read("model/recipes.json"))
-  var[params["id"]]["quality"] << params["quality"].to_i
-
+  var[params["id"]]["quality"] << params["qualitly"].to_i
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
   redirect "/recipe"
