@@ -1,7 +1,4 @@
-<h1>The delicious <%= @filename %></h1>
-<img src="<%= "/images/#{@filename}" %>" width="300" height="150" />
-
- <% @recipes.each do |key, recipe| %>
+<% @recipes.each do |key, recipe| %>
    <h1><%= recipe["name"] %></h1>
    <p> quality: <%="*" * recipe["quality"]%></p>
     <form action="/recipe-qualitly" method="POST">
@@ -38,5 +35,3 @@
    <p>PREPARATION: <%= recipe["preparation"] %></p>
    <img src = "<%= recipe["url_image"] %>">
  <% end %>
-
-
