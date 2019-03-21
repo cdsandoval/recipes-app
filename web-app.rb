@@ -27,17 +27,45 @@ end
 
 get "/recipe" do
   @recipes = JSON.parse(  File.read("model/recipes.json"))  
-  @recipes = @recipes.each do |key, recipe|
-    recipe["quality"] = prom(recipe["quality"]).to_i
+  @recipes = @recipes.each do |recipe|
+    recipe["quality"] = prom(recipe["quality"])
     recipe["duration_time"] = prom(recipe["duration_time"])
-    recipe["difficult"] = prom(recipe["difficult"]).to_i
+    recipe["difficult"] = prom(recipe["difficult"])
     recipe
   end
   erb :recipe, { :layout => :base }
 end
+# get "/recipe" do
+#   @recipes = JSON.parse(  File.read("model/recipes.json"))  
+#   @recipes = @recipes.each do |key, recipe|
+#     recipe["quality"] = prom(recipe["quality"])
+#     recipe["duration_time"] = prom(recipe["duration_time"] )
+#     recipe["difficult"] = prom(recipe["difficult"])
+#     recipe
+#   end
+#   erb :recipe, { :layout => :base }
+# end
 
 get "/add-recipe" do
-  erb :add_recipe, { :layout => :base }
+  erb :add_recipe, { :layout => :base}
+end
+
+post "/add-recipe" do
+  @var = JSON.parse(File.read("model/recipes.json"))
+  @new_id = Time.now.getutc.to_i
+  puts "HAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAA"
+  puts params["duration_time"].to_i
+  @var[@new_id] = {"id"=> Time.now.getutc.to_i, 
+    "name" => params["name"], 
+    "difficult" => [params["difficult"].to_i],
+    "duration_time" => [params["duration_time"].to_i],
+    "url_image" => params["url_image"], 
+    "preparation" => params["preparation"],
+    "quality" => []
+  } 
+  File.write("model/recipes.json", JSON.generate(@var))
+ 
+  redirect "/recipe"
 end
 
 get "/recipe/:difficult" do
