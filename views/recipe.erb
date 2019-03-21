@@ -1,6 +1,4 @@
-<img src="<%= "/images/#{@filename}" %>" width="300" height="150" />
-
- <% @recipes.each do |key, recipe| %>
+<% @recipes.each do |key, recipe| %>
    <h1><%= recipe["name"] %></h1>
    <p> quality: <%="*" * recipe["quality"]%></p>
     <form action="/recipe-qualitly" method="POST">
@@ -33,9 +31,7 @@
     <input type="number" name="duration-time" placeholder="Enter your time">
     <input type="submit" >
     <input type="hidden" name="id" value="<%=recipe["id"]%>">
-   </form> 
+   </form>
    <p>PREPARATION: <%= recipe["preparation"] %></p>
    <img src = "<%= recipe["url_image"] %>">
  <% end %>
-
-

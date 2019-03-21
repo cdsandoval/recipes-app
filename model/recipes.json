@@ -1,18 +1,13 @@
 {
-  "1553205932": {
-    "id": 1553205932,
-    "name": "hola",
-    "difficult": [
-      1
-    ],
-    "duration_time": [
-      40
-    ],
-    "url_image": "http://pollito.com",
-    "preparation": "dfsdjfsdjfjsd2",
-    "quality": [
-      0
-    ]
+  "1": {
+    "id": 1,
+    "name": "Locro",
+    "difficult": [2, 2, 1, 3],
+    "duration_time": [10, 20, 45, 10, 45, 1, 6, 2, 39],
+    "url_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4ZQOFDu9v_7zqSDFcYua6XqhHKMTs4nGJP_GUdegZsFjBhS0",
+    "quality": [1, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3],
+    "preparation": "trituras un zapallo y le metes muchas verduras, fin.",
+    "author": 1
   },
   "1553207196": {
     "id": 1553207196,
