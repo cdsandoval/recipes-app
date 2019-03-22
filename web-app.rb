@@ -116,6 +116,7 @@ end
 
 
 get "/recipes/:id_recipe" do
+  puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAH"
   id_recipe = params["id_recipe"]
   puts id_recipe
   file = File.read("model/recipes.json")
@@ -145,11 +146,11 @@ def define_display_difficulty(n)
   end
 end
 
-post "/recipe-qualitly" do
+post "/recipe-quality" do
   id_recipe = params["id"]
   var = JSON.parse(  File.read("model/recipes.json"))
-  var[id_recipe]["quality"] << params["qualitly"].to_i
-  var[id_recipe]["quality"] = prom(var[id_recipe]["quality"])
+  var[id_recipe]["quality"] << params["quality"].to_i
+  var[id_recipe]["quality"] = [prom(var[id_recipe]["quality"])]
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
   redirect "/recipes/#{id_recipe}"
