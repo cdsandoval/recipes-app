@@ -8,6 +8,8 @@
 
 
 
+
+
 <% @recipes.each do |key,recipe| %>
   <% @users.each do |key1,value|%>
     <% if value["name"] == params[:name] && value["recipes"].include?(key.to_i) %>
