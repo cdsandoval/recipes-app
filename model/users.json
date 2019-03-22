@@ -1,6 +1,1 @@
-{
-  "1": { "id": 1, "name": "Paul", "recipes": [1, 3, 5] },
-  "2": { "id": 2, "name": "Carlos", "recipes": [2, 4, 6] },
-  "1553272416": { "id": "3", "name": "diego" },
-  "1553272475": { "id": 1553272475, "name": "juanito", "recipes": [] }
-}
+{"1":{"id":1,"name":"Paul","recipes":[1,3,5]},"2":{"id":2,"name":"Carlos","recipes":[2,4,6]},"1553272416":{"id":"3","name":"diego"},"1553272475":{"id":1553272475,"name":"juanito","recipes":[]},"1553272679":{"id":1553272679,"name":"pollo","recipes":[]}}

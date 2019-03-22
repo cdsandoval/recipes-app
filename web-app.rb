@@ -169,7 +169,7 @@ end
 post "/search" do
   @recipe_title = params["recipe_title"].downcase
   @name = params["name"]  
-  @recipe_list = read_recipes() 
+  @recipe_list = JSON.parse(File.read("model/recipes.json"))
   @recipes = @recipe_list.select {|key,value| value["name"].downcase.include?(@recipe_title)}
   create_search("model/search.json",@recipes)
   redirect "/dashboard/recipes/search?#{@name}?#{@recipe_title}"
