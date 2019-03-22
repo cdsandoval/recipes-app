@@ -1,42 +1,44 @@
 <h1> <%= @recipe["name"] %> </h1>
-<p> quality: <%="*" * @recipe["quality"].size %></p>
+<span> <%= @recipe["difficult"] %> </span>
+<span> <%= @recipe["duration_time"] %> minutes </span>
+<p> <%= @recipe["preparation"] %> </p>
+<img src="<%= @filename %>"
 
-
+<% @recipes.each do |key, recipe| %>
+<%# <%=puts recipe["name"]%> %>
    <h1><%= recipe["name"] %></h1>
    <p> quality: <%="*" * recipe["quality"]%></p>
     <form action="/recipe-qualitly" method="POST">
    --- RATE THIS RECIPE:
     <select id="calidad" name="qualitly">
       <option value="" disabled= "disabled">---Enter your quality--</option>
-      <option value="1"  <% if recipe["quality"] == 1 %>selected<% end %>>1</option>
+      <option value="1" <% if recipe["quality"] == 1 %>selected<% end %>>1</option>
       <option value="2" <% if recipe["quality"] == 2 %>selected<% end %>>2</option>
       <option value="3" <% if recipe["quality"] == 3 %>selected<% end %>>3</option>
     </select>
-    <input type="hidden" name="id" value="<%= @recipe["id"]%>">
+    <input type="hidden" name="id" value="<%=recipe["id"]%>">
     <input type=" submit">
     </form>
 
-  <p> DIFFICULTY:  <%= @recipe["difficult_display"] %> </p>
+  <p> DIFFICULT: <%= "*" * recipe["difficult"] %>  </p>
    <form action="/recipe-difficulty" method="POST">
    --- DIFFICULTY:
     <select id="dificultad" name="difficulty">
-      <option value="" disabled= "disabled" selected>Enter your level of difficulty</option>
-      <option value="1" <% if @recipe["difficult"]== 1 %>selected<% end %>>Easy</option>
-      <option value="2" <% if @recipe["difficult"]== 2 %>selected<% end %>>Medium</option>
-      <option value="3" <% if @recipe["difficult"]== 3 %>selected<% end %>>Hard</option>
+      <option value="" disabled= "disabled" >--Enter your level of difficult--</option>
+      <option value="1" <% if recipe["difficult"]== 1 %>selected<% end %>>Easy</option>
+      <option value="2" <% if recipe["difficult"]== 2 %>selected<% end %>>Medium</option>
+      <option value="3" <% if recipe["difficult"]== 3 %>selected<% end %>>Hard</option>
     </select>
-    <input type="hidden" name="id" value="<%= @recipe["id"] %>">
+    <input type="hidden" name="id" value="<%=recipe["id"]%>">
     <input type="submit">
     </form>
-
-   <p>PREPARATION TIME: <%= @recipe["duration_time"][0] %> minutos</p>
+   <p>PREPARATION TIME: <%= recipe["duration_time"]%> minutos</p>
    Had a different preparation time?
    <form action="/recipe-duration-time" method="POST">
     <input type="number" name="duration-time" placeholder="Enter your time">
     <input type="submit" >
-    <input type="hidden" name="id" value="<%=@recipe["id"]%>">
-   </form>
+    <input type="hidden" name="id" value="<%=recipe["id"]%>">
+   </form> 
    <p>PREPARATION: <%= recipe["preparation"] %></p>
    <img src = "<%= recipe["url_image"] %>">
  <% end %>
-</div>

@@ -3,9 +3,8 @@ require "erb"
 require "sinatra/reloader"
 require "json"
 
-
 get "/" do
-  @recipes = JSON.parse(File.read("model/recipes.json"))  
+  @recipes = JSON.parse(File.read("model/recipes.json"))
   @recipes = @recipes.each do |key, recipe|
     recipe["quality"] = prom(recipe["quality"]).to_i
     recipe["duration_time"] = prom(recipe["duration_time"])
@@ -21,36 +20,24 @@ end
 
 get "/dashboard/:name" do
   @word=params[:name]
-  @users=JSON.parse(File.read("model/users.json"))   
+  @users=JSON.parse(File.read("model/users.json"))
   if @word.include?("search")
     @recipes=JSON.parse(File.read("model/search.json"))
   else
-    @recipes=JSON.parse(File.read("model/recipes.json"))    
+    @recipes=JSON.parse(File.read("model/recipes.json"))
   end
   erb :dashboard, { :layout => :base }
 end
 
 get "/dashboard/recipes/:name" do
   @word = params[:name]
-  @users = JSON.parse(File.read("model/users.json"))   
-  if @word.include?("search")  
+  @users = JSON.parse(File.read("model/users.json"))
+  if @word.include?("search")
     @recipes = JSON.parse(File.read("model/search.json"))
   else
-    @recipes = JSON.parse(File.read("model/recipes.json"))    
+    @recipes = JSON.parse(File.read("model/recipes.json"))
   end
   erb :search, { :layout => :base }
-end
-
-get "/recipe" do
-  @recipes = read_recipes("model/recipes.json")
-  puts @recipes.to_s  
-  @recipes = @recipes.each do |key, recipe|
-    recipe["quality"] = prom(recipe["quality"])
-    recipe["duration_time"] = prom(recipe["duration_time"] )
-    recipe["difficult"] = prom(recipe["difficult"])
-    recipe
-  end
-  erb :recipe, { :layout => :base }
 end
 
 get "/add-recipe" do
@@ -78,14 +65,14 @@ end
 post "/add-recipe" do
   @var = read_recipes("model/recipes.json")
   @new_id = Time.now.getutc.to_i
-  @var[@new_id] = {"id"=> Time.now.getutc.to_i, 
-    "name" => params["name"], 
+  @var[@new_id] = {"id"=> Time.now.getutc.to_i,
+    "name" => params["name"],
     "difficult" => [params["difficult"].to_i],
     "duration_time" => [params["duration_time"].to_i],
-    "url_image" => params["url_image"], 
+    "url_image" => params["url_image"],
     "preparation" => params["preparation"],
     "quality" => params["quality"]
-  } 
+  }
   File.write("model/recipes.json", JSON.generate(@var))
   redirect "/recipes/#{@new_id}"
 end
@@ -104,12 +91,12 @@ post "/signup" do
     @newuser = params["newuser"].downcase
     @users = JSON.parse(File.read("model/users.json"))
     @new_id = Time.now.getutc.to_i
-    @users[@new_id] = {"id"=> @new_id, 
+    @users[@new_id] = {"id"=> @new_id,
     "name" => @newuser,
     "recipes" => []
-    }  
+    }
   File.write("model/users.json", JSON.generate(@users))
-  redirect "/dashboard/#{params["newuser"]}"    
+  redirect "/dashboard/#{params["newuser"]}"
 end
 
 post "/recipe-difficulty" do
@@ -130,7 +117,7 @@ end
 
 post "/recipe-duration-time" do
   var = read_recipes("model/recipes.json")
-  var[params["id"]]["duration_time"] << params["duration-time"].to_i  
+  var[params["id"]]["duration_time"] << params["duration-time"].to_i
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
   redirect "/"
@@ -148,18 +135,69 @@ end
 post "/delete-recipe" do
   @recipe_id = params["id"]
   @name = params["name"]
-  delete_recipe("model/recipes.json",@recipe_id)  
-  delete_recipe("model/search.json",@recipe_id)  
+  delete_recipe("model/recipes.json",@recipe_id)
+  delete_recipe("model/search.json",@recipe_id)
   redirect "/dashboard/search?#{@name}"
 end
 
 post "/search" do
   @recipe_title = params["recipe_title"].downcase
-  @name = params["name"]  
+  @name = params["name"]
   @recipe_list = read_recipes("model/recipes.json")
   @recipes = @recipe_list.select {|key,value| value["name"].downcase.include?(@recipe_title)}
   create_search("model/search.json",@recipes)
   redirect "/dashboard/recipes/search?#{@recipe_title}"
+end
+
+
+get "/recipes/:id_recipe" do
+  id_recipe = params["id_recipe"]
+  puts id_recipe
+  file = File.read("model/recipes.json")
+  @recipe = JSON.parse(file)[id_recipe.to_s]
+  puts @recipe.inspect
+  erb :recipe, { :layout => :base }
+end
+
+post "/recipe-difficulty" do
+  id_recipe = params["id"]
+  var = JSON.parse(File.read("model/recipes.json"))
+  var[id_recipe]["difficult"] << params["difficulty"].to_i
+  var[id_recipe]["difficult_display"] = define_display_difficulty(var[id_recipe]["difficult"].reduce(:+)/var[id_recipe]["difficult"].size.to_f)
+  var = JSON.generate(var)
+  File.write("model/recipes.json", var)
+  redirect "/recipes/#{id_recipe}"
+end
+
+
+def define_display_difficulty(n)
+  if n <= 1.5
+    return "Easy"
+  elsif n <= 2.5
+    return "Medium"
+  else
+    return "Hard"
+  end
+end
+
+post "/recipe-qualitly" do
+  id_recipe = params["id"]
+  var = JSON.parse(  File.read("model/recipes.json"))
+  var[id_recipe]["quality"] << params["qualitly"].to_i
+  var[id_recipe]["quality"] = prom(var[id_recipe]["quality"])
+  var = JSON.generate(var)
+  File.write("model/recipes.json", var)
+  redirect "/recipes/#{id_recipe}"
+end
+
+post "/recipe-duration-time" do
+  id_recipe = params["id"]
+  var = JSON.parse(  File.read("model/recipes.json"))
+  var[id_recipe]["duration_time"] << params["duration-time"].to_i
+  var[id_recipe]["duration_time"] = [prom(var[id_recipe]["duration_time"])]
+  var = JSON.generate(var)
+  File.write("model/recipes.json", var)
+  redirect "/recipes/#{id_recipe}"
 end
 
 #############################################################
@@ -184,13 +222,9 @@ def delete_recipe(filename,id)
 end
 
 def create_search(filename,name)
-File.open(filename, "w+") do |file|
-file.puts(name.to_json)
-end
-end
-
-def prom(numbers)
-  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
+  File.open(filename, "w+") do |file|
+  file.puts(name.to_json)
+  end
 end
 
 def store_name(filename, string)
@@ -206,13 +240,14 @@ def authentic(username)
       true
     else
       false
-    end    
+    end
   end
-  @our_user.include? true  
+  @our_user.include? true
 end
 
 def prom(numbers)
-  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
+  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count
 end
+
 
 set :port, 8000
