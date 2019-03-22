@@ -1,21 +1,62 @@
 {
   "1": {
     "id": 1,
-    "name": "Locro",
-    "difficult": [2, 2, 1, 3],
-    "duration_time": [10, 20, 45, 10, 45, 1, 6, 2, 39],
-    "url_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4ZQOFDu9v_7zqSDFcYua6XqhHKMTs4nGJP_GUdegZsFjBhS0",
-    "quality": [1, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3],
-    "preparation": "trituras un zapallo y le metes muchas verduras, fin.",
+    "name": "Estofado de pavo",
+    "difficult": [2, 2],
+    "duration_time": [30],
+    "url_image": "/image/pollito.jpeg",
+    "quality": [3],
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+
     "author": 1
   },
   "2": {
     "id": 2,
-    "name": "pollo a la brasa",
-    "difficult": [3],
-    "duration_time": [30, 40],
+    "name": "Sopita",
+    "difficult": [1, 2],
+    "duration_time": [30],
+    "url_image": "image/comida-peruana.jpg",
+    "quality": [3],
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+    "author": 1
+  },
+  "3": {
+    "id": 3,
+    "name": "Arroz chaufa",
+    "difficult": [2, 3],
+    "duration_time": [30],
+    "url_image": "image/pollito.jpg",
+    "quality": [3],
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+    "author": 1
+  },
+  "4": {
+    "id": 4,
+    "name": "Adobo de pavo",
+    "difficult": [2, 3, 4],
+    "duration_time": [30],
     "url_image": "/image/locro.jpg",
-    "quality": [3, 2],
+    "quality": [3],
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+    "author": 1
+  },
+  "5": {
+    "id": 4,
+    "name": "Aji de gallina",
+    "difficult": [1, 3],
+    "duration_time": [30],
+    "url_image": "/image/locro.jpg",
+    "quality": [3],
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+    "author": 1
+  },
+  "6": {
+    "id": 4,
+    "name": "Lomo saltado",
+    "difficult": [2, 3],
+    "duration_time": [30],
+    "url_image": "/image/locro.jpg",
+    "quality": [3],
     "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
     "author": 1
   }
