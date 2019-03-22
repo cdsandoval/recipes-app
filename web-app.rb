@@ -78,7 +78,7 @@ post "/signup" do
 end
 
 post "/recipe-difficulty" do
-  var = JSON.parse(File.read("model/recipes.json"))
+  var = read_recipes()
   var[params["id"]]["difficult"] << params["difficulty"].to_i
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
@@ -86,9 +86,7 @@ post "/recipe-difficulty" do
 end
 
 post "/recipe-qualitly" do
-  var = JSON.parse(  File.read("model/recidef prom(numbers)
-  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
-endpes.json"))
+  var = read_recipes()
   var[params["id"]]["quality"] << params["qualitly"].to_i
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
@@ -96,7 +94,7 @@ endpes.json"))
 end
 
 post "/recipe-duration-time" do
-  var = JSON.parse(  File.read("model/recipes.json"))
+  var = read_recipes()
   var[params["id"]]["duration_time"] << params["duration-time"].to_i  
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
@@ -123,7 +121,7 @@ end
 post "/search" do
   @recipe_title = params["recipe_title"].downcase
   @name = params["name"]  
-  @recipe_list = read_db()  
+  @recipe_list = read_recipes() 
   @recipes = @recipe_list.select {|key,value| value["name"].downcase.include?(@recipe_title)}
   create_search("model/search.json",@recipes)
   redirect "/dashboard/recipes/search?#{@name}?#{@recipe_title}"
@@ -139,8 +137,12 @@ def create_user(filename,name)
   end
 end
 
+def read_recipes
+  JSON.parse( File.read("model/users.json"))
+end
+
 def delete_recipe(filename,id)
-  @recipe_list = read_db()
+  @recipe_list = read_recipes
   @recipe_list.delete(id)
   create_search(filename,@recipe_list)
 end
@@ -161,12 +163,8 @@ def store_name(filename, string)
   end
 end
 
-def read_db()
-  JSON.parse(  File.read("model/recipes.json"))  
-end
-
 def authentic(username)
-  user = JSON.parse( File.read("model/users.json"))  
+  user = read_recipes()
   @our_user = user.map do |key,value|
     if value["name"] == username
       true
@@ -176,7 +174,6 @@ def authentic(username)
   end
   @our_user.include? true  
 end
-
 
 def prom(numbers)
   numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
