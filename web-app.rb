@@ -3,7 +3,6 @@ require "erb"
 require "sinatra/reloader"
 require "json"
 
-
 get "/" do
   @recipes = JSON.parse(  File.read("model/recipes.json"))  
   @recipes = @recipes.each do |key, recipe|
@@ -41,29 +40,6 @@ get "/dashboard/recipes/:name" do
   erb :search, { :layout => :base }
 end
 
-
-# get "/recipe" do
-#   @recipes = JSON.parse(  File.read("model/recipes.json"))  
-#   @recipes = @recipes.each do |recipe|
-#     recipe["quality"] = prom(recipe["quality"])
-#     recipe["duration_time"] = prom(recipe["duration_time"])
-#     recipe["difficult"] = prom(recipe["difficult"])
-#     recipe
-#   end
-#   erb :recipe, { :layout => :base }
-# end
-get "/recipe" do
-  @recipes = JSON.parse(  File.read("model/recipes.json"))
-  puts @recipes.to_s  
-  @recipes = @recipes.each do |key, recipe|
-    recipe["quality"] = prom(recipe["quality"])
-    recipe["duration_time"] = prom(recipe["duration_time"] )
-    recipe["difficult"] = prom(recipe["difficult"])
-    recipe
-  end
-  erb :recipe, { :layout => :base }
-end
-
 get "/add-recipe" do
   erb :add_recipe, { :layout => :base}
 end
@@ -71,24 +47,18 @@ end
 post "/add-recipe" do
   @var = JSON.parse(File.read("model/recipes.json"))
   @new_id = Time.now.getutc.to_i
+  puts params["qualitly"]
   @var[@new_id] = {"id"=> Time.now.getutc.to_i, 
     "name" => params["name"], 
     "difficult" => [params["difficult"].to_i],
     "duration_time" => [params["duration_time"].to_i],
-    "url_image" => params["url_image"], 
+    # "url_image" => params["url_image"], 
     "preparation" => params["preparation"],
-    "quality" => []
+    "quality" => [params["qualitly"].to_i]
   } 
   File.write("model/recipes.json", JSON.generate(@var))
 
   redirect "/recipes/#{@new_id}"
-end
-
-get "/recipes/:id_recipe" do
-  id_recipe = params["id_recipe"]
-  file = File.read("model/recipes.json")
-  @recipe = JSON.parse(file)[id_recipe.to_s]
-  erb :recipe, { :layout => :base }
 end
 
 get "/recipe/:difficult" do
@@ -118,32 +88,6 @@ post "/signup" do
     redirect "/dashboard/#{params["newuser"]}"    
 end
 
-post "/recipe-difficulty" do
-  var = JSON.parse(File.read("model/recipes.json"))
-  var[params["id"]]["difficult"] << params["difficulty"].to_i
-  var = JSON.generate(var)
-  File.write("model/recipes.json", var)
-  redirect "/recipe"
-end
-
-post "/recipe-qualitly" do
-  var = JSON.parse(  File.read("model/recidef prom(numbers)
-  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
-endpes.json"))
-  var[params["id"]]["quality"] << params["qualitly"].to_i
-  var = JSON.generate(var)
-  File.write("model/recipes.json", var)
-  redirect "/recipe"
-end
-
-post "/recipe-duration-time" do
-  var = JSON.parse(  File.read("model/recipes.json"))
-  var[params["id"]]["duration_time"] << params["duration-time"].to_i  
-  var = JSON.generate(var)
-  File.write("model/recipes.json", var)
-  redirect "/recipe"
-end
-
 post '/save_image' do
   @filename = params[:file][:filename]
   file = params[:file][:tempfile]
@@ -170,6 +114,57 @@ post "/search" do
   redirect "/dashboard/recipes/search?#{@name}?#{@recipe_title}"
 end
 
+
+get "/recipes/:id_recipe" do
+  id_recipe = params["id_recipe"]
+  puts id_recipe
+  file = File.read("model/recipes.json")
+  @recipe = JSON.parse(file)[id_recipe.to_s]
+  puts @recipe.inspect
+  erb :recipe, { :layout => :base }
+end
+
+post "/recipe-difficulty" do
+  id_recipe = params["id"]
+  var = JSON.parse(File.read("model/recipes.json"))
+  var[id_recipe]["difficult"] << params["difficulty"].to_i
+  var[id_recipe]["difficult_display"] = define_display_difficulty(var[id_recipe]["difficult"].reduce(:+)/var[id_recipe]["difficult"].size.to_f)
+  var = JSON.generate(var)
+  File.write("model/recipes.json", var)
+  redirect "/recipes/#{id_recipe}"
+end
+
+
+def define_display_difficulty(n)
+  if n <= 1.5
+    return "Easy"
+  elsif n <= 2.5
+    return "Medium"
+  else
+    return "Hard"
+  end
+end
+
+post "/recipe-qualitly" do
+  id_recipe = params["id"]
+  var = JSON.parse(  File.read("model/recipes.json"))
+  var[id_recipe]["quality"] << params["qualitly"].to_i
+  var[id_recipe]["quality"] = prom(var[id_recipe]["quality"])
+  var = JSON.generate(var)
+  File.write("model/recipes.json", var)
+  redirect "/recipes/#{id_recipe}"
+end
+
+post "/recipe-duration-time" do
+  id_recipe = params["id"]
+  var = JSON.parse(  File.read("model/recipes.json"))
+  var[id_recipe]["duration_time"] << params["duration-time"].to_i
+  var[id_recipe]["duration_time"] = [prom(var[id_recipe]["duration_time"])]
+  var = JSON.generate(var)
+  File.write("model/recipes.json", var)
+  redirect "/recipes/#{id_recipe}"
+end
+
 #############################################################
 #########################METHODS############################
 ############################################################
@@ -187,13 +182,9 @@ def delete_recipe(filename,id)
 end
 
 def create_search(filename,name)
-File.open(filename, "w+") do |file|
-file.puts(name.to_json)
-end
-end
-
-def prom(numbers)
-  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
+  File.open(filename, "w+") do |file|
+  file.puts(name.to_json)
+  end
 end
 
 def store_name(filename, string)
@@ -220,7 +211,8 @@ end
 
 
 def prom(numbers)
-  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count 
+  numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count
 end
+
 
 set :port, 8000

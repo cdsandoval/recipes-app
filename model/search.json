@@ -1,1 +1,22 @@
-{"1":{"id":1,"name":"Estofado de pavo","difficult":[2,2],"duration_time":[30],"url_image":"/image/pollito.jpeg","quality":[3],"preparation":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.","author":1},"4":{"id":4,"name":"Adobo de pavo","difficult":[2,3,4],"duration_time":[30],"url_image":"/image/locro.jpg","quality":[3],"preparation":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.","author":1}}
+{
+  "1": {
+    "id": 1,
+    "name": "Estofado de pavo",
+    "difficult": [2, 2],
+    "duration_time": [30],
+    "url_image": "/image/pollito.jpeg",
+    "quality": [3],
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+    "author": 1
+  },
+  "4": {
+    "id": 4,
+    "name": "Adobo de pavo",
+    "difficult": [2, 3, 4],
+    "duration_time": [30],
+    "url_image": "/image/locro.jpg",
+    "quality": [3],
+    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
+    "author": 1
+  }
+}
