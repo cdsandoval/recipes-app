@@ -3,6 +3,13 @@ require "erb"
 require "sinatra/reloader"
 
 get "/" do
+  @recipes = JSON.parse(  File.read("model/recipes.json"))  
+  @recipes = @recipes.each do |key, recipe|
+    recipe["quality"] = prom(recipe["quality"]).to_i
+    recipe["duration_time"] = prom(recipe["duration_time"])
+    recipe["difficult"] = prom(recipe["difficult"]).to_i
+    recipe
+  end
   erb :index, { :layout => :base }
 end
 
