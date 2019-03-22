@@ -1,0 +1,18 @@
+<a href="/add-recipe">Add Recipe</a>
+
+<form action="/search" method="POST">
+  <input type="text" name="recipe_title">
+    <input type="hidden" name="name" value="<%= params[:name]%>"/>
+  <input type="submit" value="Search"/>  
+</form>
+
+
+
+<% @recipes.each do |key,recipe| %>      
+      <h1><%= recipe["name"]%></h1>
+      <img src = "<%= recipe["url_image"] %>">
+      <p>PREPARATION TIME: <%= recipe["duration_time"]%>  minutes</p>
+      <p>PREPARATION: <%= recipe["preparation"] %></p>
+      <p>DIFFICULTY: <%= recipe["difficult"]%></p>
+      <p>QUALITY: <%= recipe["quality"] %></p>     
+<% end %>

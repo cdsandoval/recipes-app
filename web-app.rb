@@ -5,6 +5,13 @@ require "json"
 
 
 get "/" do
+  @recipes = JSON.parse(  File.read("model/recipes.json"))  
+  @recipes = @recipes.each do |key, recipe|
+    recipe["quality"] = prom(recipe["quality"]).to_i
+    recipe["duration_time"] = prom(recipe["duration_time"])
+    recipe["difficult"] = prom(recipe["difficult"]).to_i
+    recipe
+  end
   erb :index, { :layout => :base }
 end
 
@@ -14,14 +21,24 @@ end
 
 get "/dashboard/:name" do
   @word = params[:name]
-  @users = JSON.parse( File.read("model/users.json"))      
+  @users = JSON.parse(File.read("model/users.json"))   
   if @word.include?("search")  
-    @recipes =  JSON.parse(File.read("model/search.json"))
+    @recipes = JSON.parse(File.read("model/search.json"))
   else
-    @recipes = JSON.parse( File.read("model/recipes.json"))  
-    
+    @recipes = JSON.parse(File.read("model/recipes.json"))    
   end
   erb :dashboard, { :layout => :base }
+end
+
+get "/dashboard/recipes/:name" do
+  @word = params[:name]
+  @users = JSON.parse(File.read("model/users.json"))   
+  if @word.include?("search")  
+    @recipes = JSON.parse(File.read("model/search.json"))
+  else
+    @recipes = JSON.parse(File.read("model/recipes.json"))    
+  end
+  erb :search, { :layout => :base }
 end
 
 
@@ -80,9 +97,9 @@ get "/recipe/:difficult" do
   erb :recipe, { :layout => :base }
 end
 
-#############
-####POST#####
-#############
+##########################################################################
+#############################POST#########################################
+##########################################################################
 
 
 post "/access" do
@@ -102,7 +119,7 @@ post "/signup" do
 end
 
 post "/recipe-difficulty" do
-  var = JSON.parse(  File.read("model/recipes.json"))
+  var = JSON.parse(File.read("model/recipes.json"))
   var[params["id"]]["difficult"] << params["difficulty"].to_i
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
@@ -145,16 +162,17 @@ post "/delete-recipe" do
 end
 
 post "/search" do
-  @recipe_title = params["recipe_title"]
+  @recipe_title = params["recipe_title"].downcase
+  @name = params["name"]  
   @recipe_list = read_db()  
-  @recipes = @recipe_list.select {|key,value| value["name"].include? @recipe_title }
+  @recipes = @recipe_list.select {|key,value| value["name"].downcase.include?(@recipe_title)}
   create_search("model/search.json",@recipes)
-  redirect "/dashboard/search?#{@recipe_title}"
+  redirect "/dashboard/recipes/search?#{@name}?#{@recipe_title}"
 end
 
-#################
-#####METHODS######
-##################
+#############################################################
+#########################METHODS############################
+############################################################
 
 def create_user(filename,name)
   File.open(filename, "a+") do |file|

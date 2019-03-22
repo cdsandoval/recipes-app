@@ -1,8 +1,6 @@
-<form action="/" method="POST">
-<%# 
-<form action="/signup" method="POST">
-  <input type="submit" value="Add new recipe" />
-</form> %>
+
+<a href="/add-recipe">Add Recipe</a>
+
 
 <form action="/search" method="POST">
   <input type="text" name="recipe_title">
@@ -14,6 +12,8 @@
  <button type="button">Add New Recipe!</button> 
  </form>
 <br /><br />
+
+
 
 
 <% @recipes.each do |key,recipe| %>
@@ -29,7 +29,7 @@
         <input type="hidden" name="id" value="<%=key%>" />
         <input type="hidden" name="name" value="<%= params[:name]%>"/>
         <input type="submit" value="Delete" />
-      </form> 
+      </form>      
     <% end %>
   <% end %>
 <% end %>
