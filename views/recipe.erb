@@ -1,12 +1,13 @@
 <% @recipes.each do |key, recipe| %>
 
+
    <h1><%= recipe["name"] %></h1>
    <p> quality: <%="*" * recipe["quality"]%></p>
     <form action="/recipe-qualitly" method="POST">
    --- RATE THIS RECIPE:
     <select id="calidad" name="qualitly">
       <option value="" disabled= "disabled">---Enter your quality--</option>
-      <option value="1" <% if recipe["quality"] == 1 %>selected<% end %>>1</option>
+      <option value="1"  <% if recipe["quality"] == 1 %>selected<% end %>>1</option>
       <option value="2" <% if recipe["quality"] == 2 %>selected<% end %>>2</option>
       <option value="3" <% if recipe["quality"] == 3 %>selected<% end %>>3</option>
     </select>
@@ -36,3 +37,4 @@
    <p>PREPARATION: <%= recipe["preparation"] %></p>
    <img src = "<%= recipe["url_image"] %>">
  <% end %>
+</div>

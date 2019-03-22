@@ -15,10 +15,9 @@
 
 
 
-
-<% @recipes.each do |key,recipe| %>
-  <% @users.each do |key1,value|%>
-    <% if value["name"] == params[:name] && value["recipes"].include?(key.to_i) %>
+<% @users.each do |key1,value|%> 
+<% @recipes.each do |key,recipe| %>       
+    <% if value["name"] != "admin" && value["name"] == params[:name] && value["recipes"].include?(key.to_i) %>
       <h1><%= recipe["name"]%></h1>
       <img src = "<%= recipe["url_image"] %>">
       <p>PREPARATION TIME: <%= recipe["duration_time"]%>  minutes</p>
@@ -29,7 +28,10 @@
         <input type="hidden" name="id" value="<%=key%>" />
         <input type="hidden" name="name" value="<%= params[:name]%>"/>
         <input type="submit" value="Delete" />
-      </form>      
+      </form>       
     <% end %>
   <% end %>
 <% end %>
+
+
+
