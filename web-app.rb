@@ -42,7 +42,7 @@ get "/dashboard/recipes/:name" do
 end
 
 get "/recipe" do
-  @recipes = JSON.parse( File.read("model/recipes.json"))
+  @recipes = read_recipes("model/recipes.json")
   puts @recipes.to_s  
   @recipes = @recipes.each do |key, recipe|
     recipe["quality"] = prom(recipe["quality"])
@@ -60,13 +60,13 @@ end
 get "/recipes/:id_recipe" do
   # id_recipe.to_s
   id_recipe = params["id_recipe"]
-  file = JSON.parse(File.read("model/recipes.json"))
+  file = read_recipes("model/recipes.json")
   @recipes = file["1553265385"]
   erb :recipe, { :layout => :base }
 end
 
 get "/recipe/:difficult" do
-  list_recipe = JSON.parse(File.read("model/recipes.json"))
+  list_recipe = read_recipes("model/recipes.json")
   @recipes = list_recipe.select {|recipe| recipe["difficult"] == params["difficult"]}
   erb :recipe, { :layout => :base }
 end
@@ -76,7 +76,7 @@ end
 ##########################################################################
 
 post "/add-recipe" do
-  @var = JSON.parse(File.read("model/recipes.json"))
+  @var = read_recipes("model/recipes.json")
   @new_id = Time.now.getutc.to_i
   @var[@new_id] = {"id"=> Time.now.getutc.to_i, 
     "name" => params["name"], 
