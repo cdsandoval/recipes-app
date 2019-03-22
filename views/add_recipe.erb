@@ -1,26 +1,26 @@
 <h1>New Recipe</h1>
 <hr />
-<form action="">
+<form action="/add-recipe" method= "POST">
   <label for="">Name</label>
   <input type="text" name="name" />
   <br />
   <label for="">Difficulty</label>
   <select name="difficult" id="">
     <option disabled="disabled" selected="selected" value="">Choose an option</option>
-    <option value="easy">Easy</option>
-    <option value="medium">Medium</option>
-    <option value="hard">Hard</option>
+    <option value="1">Easy</option>
+    <option value="2">Medium</option>
+    <option value="3">Hard</option>
   </select>
   <br />
   <label for="">Duration time</label>
-  <input type="text" value="" placeholder="00:00" />
+  <input type="number" name="duration_time" value="" placeholder="00:00" />
   <br />
   <label for="">Url's image</label>
-  <input type="text" placeholder="Paste the image's URL">
+  <input type="url" name="url_image" placeholder="Paste the image's URL">
   <br />
   <label for="">Preparation</label>
   <br />
-  <textarea name="" id="" cols="30" rows="10" placeholder="Recipes's preparation"></textarea>
+  <textarea name="preparation" id="" cols="30" rows="10" placeholder="Recipes's preparation"></textarea>
   <br />
   <input type="submit" value="save">
 </form>

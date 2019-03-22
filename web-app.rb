@@ -5,6 +5,13 @@ require "json"
 
 
 get "/" do
+  @recipes = JSON.parse(  File.read("model/recipes.json"))  
+  @recipes = @recipes.each do |key, recipe|
+    recipe["quality"] = prom(recipe["quality"]).to_i
+    recipe["duration_time"] = prom(recipe["duration_time"])
+    recipe["difficult"] = prom(recipe["difficult"]).to_i
+    recipe
+  end
   erb :index, { :layout => :base }
 end
 
@@ -35,23 +42,57 @@ get "/dashboard/recipes/:name" do
 end
 
 
+# get "/recipe" do
+#   @recipes = JSON.parse(  File.read("model/recipes.json"))  
+#   @recipes = @recipes.each do |recipe|
+#     recipe["quality"] = prom(recipe["quality"])
+#     recipe["duration_time"] = prom(recipe["duration_time"])
+#     recipe["difficult"] = prom(recipe["difficult"])
+#     recipe
+#   end
+#   erb :recipe, { :layout => :base }
+# end
 get "/recipe" do
-  @recipes = JSON.parse(  File.read("model/recipes.json"))  
+  @recipes = JSON.parse(  File.read("model/recipes.json"))
+  puts @recipes.to_s  
   @recipes = @recipes.each do |key, recipe|
-    recipe["quality"] = prom(recipe["quality"]).to_i
-    recipe["duration_time"] = prom(recipe["duration_time"])
-    recipe["difficult"] = prom(recipe["difficult"]).to_i
+    recipe["quality"] = prom(recipe["quality"])
+    recipe["duration_time"] = prom(recipe["duration_time"] )
+    recipe["difficult"] = prom(recipe["difficult"])
     recipe
   end
   erb :recipe, { :layout => :base }
 end
 
 get "/add-recipe" do
-  erb :add_recipe, { :layout => :base }
+  erb :add_recipe, { :layout => :base}
+end
+
+post "/add-recipe" do
+  @var = JSON.parse(File.read("model/recipes.json"))
+  @new_id = Time.now.getutc.to_i
+  @var[@new_id] = {"id"=> Time.now.getutc.to_i, 
+    "name" => params["name"], 
+    "difficult" => [params["difficult"].to_i],
+    "duration_time" => [params["duration_time"].to_i],
+    "url_image" => params["url_image"], 
+    "preparation" => params["preparation"],
+    "quality" => []
+  } 
+  File.write("model/recipes.json", JSON.generate(@var))
+
+  redirect "/recipes/#{@new_id}"
+end
+
+get "/recipes/:id_recipe" do
+  id_recipe = params["id_recipe"]
+  file = File.read("model/recipes.json")
+  @recipe = JSON.parse(file)[id_recipe.to_s]
+  erb :recipe, { :layout => :base }
 end
 
 get "/recipe/:difficult" do
-  list_recipe = JSON.parse(  File.read("model/recipes.json"))
+  list_recipe = JSON.parse(File.read("model/recipes.json"))
   @recipes = list_recipe.select {|recipe| recipe["difficult"] == params["difficult"]}
   erb :recipe, { :layout => :base }
 end
