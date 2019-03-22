@@ -53,7 +53,7 @@ end
 #   erb :recipe, { :layout => :base }
 # end
 get "/recipe" do
-  @recipes = JSON.parse(  File.read("model/recipes.json"))
+  @recipes = JSON.parse( File.read("model/recipes.json"))
   puts @recipes.to_s  
   @recipes = @recipes.each do |key, recipe|
     recipe["quality"] = prom(recipe["quality"])
@@ -77,7 +77,7 @@ post "/add-recipe" do
     "duration_time" => [params["duration_time"].to_i],
     "url_image" => params["url_image"], 
     "preparation" => params["preparation"],
-    "quality" => []
+    "quality" => params["quality"]
   } 
   File.write("model/recipes.json", JSON.generate(@var))
 
@@ -85,9 +85,10 @@ post "/add-recipe" do
 end
 
 get "/recipes/:id_recipe" do
+  # id_recipe.to_s
   id_recipe = params["id_recipe"]
-  file = File.read("model/recipes.json")
-  @recipe = JSON.parse(file)[id_recipe.to_s]
+  file = JSON.parse(File.read("model/recipes.json"))
+  @recipes = file["1553265385"]
   erb :recipe, { :layout => :base }
 end
 
@@ -113,33 +114,39 @@ post "/access" do
 end
 
 post "/signup" do
-    @newuser = params["newuser"].downcase! 
-    create_user("user.txt",@newuser) 
-    redirect "/dashboard/#{params["newuser"]}"    
+    @newuser = params["newuser"].downcase
+    @users = JSON.parse(File.read("model/users.json"))
+    @new_id = Time.now.getutc.to_i
+    @users[@new_id] = {"id"=> @new_id, 
+    "name" => @newuser,
+    "recipes" => []
+    }  
+  File.write("model/users.json", JSON.generate(@users))
+  redirect "/dashboard/#{params["newuser"]}"    
 end
 
 post "/recipe-difficulty" do
-  var = read_recipes()
+  var = JSON.parse(File.read("model/recipes.json"))
   var[params["id"]]["difficult"] << params["difficulty"].to_i
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
-  redirect "/recipe"
+  redirect "/"
 end
 
 post "/recipe-qualitly" do
-  var = read_recipes()
+  var = JSON.parse(File.read("model/recipes.json"))
   var[params["id"]]["quality"] << params["qualitly"].to_i
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
-  redirect "/recipe"
+  redirect "/"
 end
 
 post "/recipe-duration-time" do
-  var = read_recipes()
+  var = JSON.parse(File.read("model/recipes.json"))
   var[params["id"]]["duration_time"] << params["duration-time"].to_i  
   var = JSON.generate(var)
   File.write("model/recipes.json", var)
-  redirect "/recipe"
+  redirect "/"
 end
 
 post '/save_image' do
@@ -176,10 +183,6 @@ def create_user(filename,name)
   File.open(filename, "a+") do |file|
   file.puts([name])
   end
-end
-
-def read_recipes
-  JSON.parse( File.read("model/users.json"))
 end
 
 def delete_recipe(filename,id)
