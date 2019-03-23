@@ -1,6 +1,7 @@
 <h1>New Recipe</h1>
 <hr />
 <form action="/add-recipe" method= "POST" enctype="multipart/form-data">
+  <input type="hidden" name="id_user" value=<%= @id_user %> />
   <label for="">Name</label>
   <input type="text" name="name" />
   <br />
@@ -14,11 +15,13 @@
   <br />
   <label for="">Quality</label>
   <select id="calidad" name="qualitly">
-      <option value="" disabled= "disabled">---Enter your quality--</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
+    <option value="" disabled= "disabled">---Enter your quality--</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
   <br />
   <label for="">Duration time</label>
   <input type="number" name="duration_time" value="" placeholder="00:00" />

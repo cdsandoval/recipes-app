@@ -18,13 +18,16 @@ get "/access" do
   erb :access, { :layout => :base }
 end
 
-get "/dashboard/:name" do
-  @word = params[:name]
+get "/dashboard/:id_user" do
+  @id_user = params["id_user"]
   @users = JSON.parse(File.read("model/users.json"))
-  if @word.include?("search")
+  if @id_user.include?("search")
     @recipes = JSON.parse(File.read("model/search.json"))
   else
     @recipes = JSON.parse(File.read("model/recipes.json"))
+    @user_recipes = @users[@id_user]["recipes"].map do |id_recipe|
+      @recipes[id_recipe.to_s]
+    end
   end
   erb :dashboard, { :layout => :base }
 end
@@ -40,10 +43,6 @@ get "/dashboard/recipes/:name" do
   erb :search, { :layout => :base }
 end
 
-get "/add-recipe" do
-  erb :add_recipe, { :layout => :base}
-end
-
 get "/recipes/:id_recipe" do
   id_recipe = params["id_recipe"]
   file = File.read("model/recipes.json")
@@ -51,11 +50,16 @@ get "/recipes/:id_recipe" do
   erb :recipe, { :layout => :base }
 end
 
+get "/add-recipe/:id_user" do
+  @id_user = params["id_user"]
+  erb :add_recipe, { :layout => :base}
+end
+
 post "/add-recipe" do
   save_image(params)
-  @var = JSON.parse(File.read("model/recipes.json"))
-  @new_id = Time.now.getutc.to_i
-  @var[@new_id] = {"id"=> @new_id,
+  new_id = Time.now.getutc.to_i
+  json_recipes = JSON.parse(File.read("model/recipes.json"))
+  json_recipes[new_id] = {"id"=> new_id,
     "name" => params["name"],
     "difficult" => [params["difficult"].to_i],
     "duration_time" => [params["duration_time"].to_i],
@@ -63,8 +67,13 @@ post "/add-recipe" do
     "preparation" => params["preparation"],
     "quality" => [params["qualitly"].to_i]
   }
-  File.write("model/recipes.json", JSON.generate(@var))
-  redirect "/recipes/#{@new_id}"
+  File.write("model/recipes.json", JSON.generate(json_recipes))
+
+  json_users = JSON.parse(File.read("model/users.json"))
+  json_users[params["id_user"]]["recipes"] << new_id
+  File.write("model/users.json", JSON.generate(json_users))
+
+  redirect "/recipes/#{new_id}"
 end
 
 def save_image(params)
@@ -84,27 +93,45 @@ end
 #############################POST#############################
 
 post "/access" do
-  @name = params["name"]
-  # store_name("user.txt", @name)
-  if authentic(@name)
-    redirect "/dashboard/#{@name}"
+  name = params["name"]
+  id_user = authentic(name)
+  if id_user
+    redirect "/dashboard/#{id_user}"
   else
     redirect "/access"
   end
 end
 
 post "/signup" do
-  @newuser = params["newuser"].downcase!
-  create_user("user.txt",@newuser)
-  redirect "/dashboard/#{params["newuser"]}"
+  @newuser = params["newuser"].downcase
+  @users = JSON.parse(File.read("model/users.json"))
+  @new_id = Time.now.getutc.to_i
+  @users[@new_id] = {"id"=> @new_id,
+    "name" => @newuser,
+    "recipes" => []
+  }
+  File.write("model/users.json", JSON.generate(@users))
+  redirect "/dashboard/#{@new_id }"
 end
 
 post "/delete-recipe" do
-  @recipe_id = params["id"]
+  @id_recipe = params["id_recipe"]
   @name = params["name"]
-  delete_recipe("model/recipes.json",@recipe_id)
-  delete_recipe("model/search.json",@recipe_id)
-  redirect "/dashboard/search?#{@name}"
+  @id_user = params["id_user"]
+  delete_recipe("model/recipes.json", @id_recipe)
+  delete_recipe("model/search.json", @id_recipe)
+  delete_recipe_user(@id_user, @id_recipe)
+  redirect "/dashboard/#{@id_user}"
+end
+
+def delete_recipe_user(id_user, id_recipe)
+  json_users = JSON.parse(File.read("model/users.json"))
+  json_users[id_user.to_s]["recipes"].delete(id_recipe.to_i)
+  puts "AAAAAAAAAAAAAAAAAAAAAH"
+  puts json_users[id_user.to_s]["recipes"].inspect
+  puts "AAAAAAAAAAAAAAAAAAAAAH"
+
+  File.write("model/users.json", JSON.generate(json_users))
 end
 
 post "/search" do
@@ -169,7 +196,7 @@ def read_recipes(filename)
   JSON.parse(File.read(filename))
 end
 
-def delete_recipe(filename,id)
+def delete_recipe(filename, id)
   @recipe_list = read_recipes("model/recipes.json")
   @recipe_list.delete(id)
   create_search(filename,@recipe_list)
@@ -188,15 +215,13 @@ def store_name(filename, string)
 end
 
 def authentic(username)
+  # Return id of the username or false if the username don't exist
   user = read_recipes("model/users.json")
-  @our_user = user.map do |key,value|
-    if value["name"] == username
-      true
-    else
-      false
-    end
+  username_match = user.select { |key, hash| hash["name"] == username }
+  if username_match.count > 0
+    return username_match.first[1]["id"]
   end
-  @our_user.include? true
+  false
 end
 
 def prom(numbers)

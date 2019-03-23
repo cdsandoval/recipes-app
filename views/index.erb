@@ -1,7 +1,15 @@
-<% @recipes.each do |key, recipe| %>
-  <h1><a href="/recipes/<%= recipe["id"] %>"><%= recipe["name"] %></a></h1>
-  <p> QUALITY: <%="*" * recipe["quality"]%></p>
-  <p> DIFFICULT: <%= "*" * recipe["difficult"] %>  </p>
-  <p>PREPARATION TIME: <%= recipe["duration_time"]%> minutes</p>
-  <img src = "<%= recipe["url_image"] %>">
- <% end %>
+<div class="list-recipe">
+  <% @recipes.each do |key, recipe| %>
+  <div class="item oh">
+    <img class="image left" src="<%= recipe["url_image"] %>" width="160" height="120">
+    <div class="left">
+      <h1 class="title"><a href="/recipes/<%= recipe["id"] %>"><%= recipe["name"] %></a></h1>
+      <ul class="features">
+        <li class="feature">Quality: <%="*" * recipe["quality"]%></li>
+        <li class="feature">Difficulty: <%= "*" * recipe["difficult"] %> </li>
+        <li class="feature">Preparation time: <%= recipe["duration_time"]%> minutes</li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>
