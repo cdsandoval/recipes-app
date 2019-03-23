@@ -1,16 +1,16 @@
 <div class="list-recipe">
   <% @recipes.each do |key, recipe| %>
   <div class="item oh">
-    <img class="image left" src="<%= recipe["url_image"] %>" width="120" height="90">
+    <img class="image left" src="<%= recipe["url_image"] %>" width="120" height="75">
     <div class="left">
       <h1 class="title"><a href="/recipes/<%= recipe["id"] %>"><%= recipe["name"] %></a></h1>
       <div class="features row">
         <div class="show-quality">
           <% recipe["quality"][0].times do %>
-          <img class="heart heart-on" src="/img/heart.svg" alt="" width="20">
+          <img class="heart heart-on" src="/img/heart.svg" alt="" width="14">
           <% end %>
           <% (5 - recipe["quality"][0]).times do %>
-          <img class="heart heart-off" src="/img/heart.svg" alt="" width="20">
+          <img class="heart heart-off" src="/img/heart.svg" alt="" width="14">
           <% end %>
         </div>
         <span>| <%= recipe["difficult_display"]%> | <%= recipe["duration_time"] %> minutes

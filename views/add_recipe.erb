@@ -3,14 +3,12 @@
   <form action="/add-recipe" method="POST" enctype="multipart/form-data">
     <input class="input" type="hidden" name="id_user" value=<%= @id_user %> />
     <div class="input-block">
-    </div>
-    <div class="input-block">
       <label class="label" for="">Name recipe</label>
-      <input class="input" type="text" name="name" />
+      <input class="input" type="text" name="name" maxlength="80" required/>
     </div>
     <div class="input-block">
       <label class="label" for="">Difficulty</label>
-      <select class="input" name="difficult" id="">
+      <select class="input" name="difficult" id="" required>
         <option disabled="disabled" selected="selected" value="">Choose an option</option>
         <option value="1">Easy</option>
         <option value="2">Medium</option>
@@ -19,7 +17,7 @@
     </div>
     <div class="input-block">
       <label class="label" for="">Quality</label>
-      <select class="input" id="calidad" name="qualitly">
+      <select class="input" id="calidad" name="qualitly" required>
         <option value="" disabled="disabled">---Enter your quality--</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -30,16 +28,15 @@
     </div>
     <div class="input-block">
       <label class="label" for="">Duration time in minutes</label>
-      <input class="input" type="number" name="duration_time" value="" placeholder="How many minutes?" />
+      <input class="input" type="number" name="duration_time" value="" placeholder="How many minutes?" required/>
     </div>
     <div class="input-block">
       <label class="label" for="">Image</label>
-      <input class="" type="file" name="file">
+      <input class="" type="file" name="file" required>
     </div>
     <div class="input-block">
       <label class="label" for="">Preparation</label>
-      <textarea class="input area" name="preparation" id="" cols="50" rows="10"
-        placeholder="Recipes's preparation"></textarea>
+      <textarea class="input area" name="preparation" id="" cols="50" rows="10" placeholder="Recipes's preparation" required></textarea>
     </div>
     <div class="input-block">
       <input class="button" type="submit" value="Save">
