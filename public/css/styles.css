@@ -38,7 +38,7 @@ li{
 }
 
 .heart-off{
-  opacity: 0.35
+  opacity: 0.25
 }
 
 .features{
@@ -49,8 +49,8 @@ li{
 
 .features .show-quality{
   display: grid;
-  grid-column-gap: 8px;
-  width: 150px;
+  grid-column-gap: 4px;
+  width: 96px;
   grid-template-columns: repeat(5, auto);
   margin-right: 10px
 }
@@ -62,12 +62,13 @@ li{
   -moz-appearance: none;
   font-size: 16px;
   font-family: monospace;
-  color: #ececec;
-  background: #1700ee;
-  padding: 0 10px;
+  color: white;
+  background: tomato;
+  padding: 0 16px;
   height: 36px;
   line-height: 36px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .button.-second{
@@ -171,11 +172,13 @@ header .search .button{
   bottom: 0px;
   height: auto;
   position: absolute;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 .content{
   background-color: white;
-  max-width: 875px;
+  max-width: 960px;
   margin: auto;
   border-radius: 10px;
 }
@@ -201,13 +204,20 @@ header .search .button{
 }
 
 .list-recipe .image{
-  margin-right: 24px
+  margin-right: 24px;
+  border-radius: 5px;
 }
 
 .list-recipe .title{
   font-size: 24px;
   margin: 0;
-  margin-bottom: 16px;
+  font-weight: normal;
+  margin-bottom: 8px;
+  margin-top: 6px;
+}
+
+.list-recipe .title a{
+  text-decoration: none;
 }
 
 /* Access */
@@ -235,6 +245,7 @@ header .search .button{
 
 .page-recipe .title{
   font-size: 32px;
+  margin-bottom: 10px;
 }
 
 .page-recipe .image-recipe{
@@ -242,10 +253,17 @@ header .search .button{
 }
 
 .page-recipe .description{
-  max-width: 640px;
+  max-width: 768px;
   font-size: 20px;
-  margin: 16px auto;
-  margin-bottom: 40px
+  margin: 40px auto;
+}
+
+.page-recipe .description ul{
+  padding-left: 24px;
+}
+
+.page-recipe .description li{
+  list-style: disc;
 }
 
 .page-recipe .main-content{
@@ -258,7 +276,7 @@ header .search .button{
 }
 
 .page-recipe .evaluation{
-  max-width: 640px;
+  max-width: 768px;
   margin: auto;
   margin-top: 60px;
   padding-top: 40px;

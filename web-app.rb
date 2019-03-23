@@ -68,7 +68,7 @@ post "/add-recipe" do
   json_recipes = JSON.parse(File.read("model/recipes.json"))
   json_recipes[new_id] = {
     "id"=> new_id,
-    "name" => params["name"],
+    "name" => params["name"][0..79],
     "difficult" => [params["difficult"].to_i],
     "duration_time" => [params["duration_time"].to_i],
     "url_image" => "/images/#{params[:file][:filename]}",

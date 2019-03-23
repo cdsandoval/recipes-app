@@ -4,17 +4,19 @@
     "name": "Arroz con pollo",
     "difficult": [
       1,
-      2
+      2,
+      1,
+      3
     ],
     "duration_time": [
-      100
+      500
     ],
     "url_image": "/images/601tr.png",
     "preparation": "This is an individual exercise. However, you will be giving feedback to the other members of your peer code-review group on the solutions they present, as well as receiving feedback from them.\r\nCreate a public repo in your Github profile. This project should be part of your personal portfolio.",
     "quality": [
-      2
+      4
     ],
-    "difficult_display": "Easy"
+    "difficult_display": "Medium"
   },
   "1553363477": {
     "id": 1553363477,
@@ -48,5 +50,37 @@
       5
     ],
     "difficult_display": "Hard"
+  },
+  "1553375687": {
+    "id": 1553375687,
+    "name": "Ayer busqu",
+    "difficult": [
+      2
+    ],
+    "duration_time": [
+      3432
+    ],
+    "url_image": "/images/1-c.jpg",
+    "preparation": "alhdlksjlkdsa",
+    "quality": [
+      2
+    ],
+    "difficult_display": "Medium"
+  },
+  "1553375939": {
+    "id": 1553375939,
+    "name": "Lomo Saltado",
+    "difficult": [
+      2
+    ],
+    "duration_time": [
+      35
+    ],
+    "url_image": "/images/LOMOSALTADOTYU.jpg",
+    "preparation": "<ul>\r\n<li>1 cubito de<strong>&nbsp;MAGGI – CARNE</strong> disuelto en ½ taza de agua</li>\r\n<li>1 cucharada de aceite vegetal</li>\r\n<li>400 gramos de lomo de res picado en tiras</li>\r\n<li>1 cebolla roja cortada en tiras gruesa</li>\r\n<li>2 ajíes amarillos sin pepas y venas, cortado tiras delgadas</li>\r\n<li>2 cucharadas de ajo molido</li>\r\n<li>3 cucharadas de vinagre blanco</li>\r\n<li>4 cucharadas sillao</li>\r\n<li>1 tomate sin pepas cortado en juliana gruesa</li>\r\n<li>3 ramas de culantro picado finamente</li>\r\n<li>Sal y pimienta al gusto</li>\r\n<li>4 tazas de arroz cocido</li>\r\n</ul>",
+    "quality": [
+      4
+    ],
+    "difficult_display": "Medium"
   }
 }
