@@ -1,1 +1,19 @@
-{}
+{
+  "1553356909": {
+    "id": 1553356909,
+    "name": "Arroz con pollo",
+    "difficult": [
+      1,
+      2
+    ],
+    "duration_time": [
+      100
+    ],
+    "url_image": "/images/601tr.png",
+    "preparation": "This is an individual exercise. However, you will be giving feedback to the other members of your peer code-review group on the solutions they present, as well as receiving feedback from them.\r\nCreate a public repo in your Github profile. This project should be part of your personal portfolio.",
+    "quality": [
+      2
+    ],
+    "difficult_display": "Easy"
+  }
+}

@@ -1,1 +1,52 @@
-{"1553324390":{"id":1553324390,"name":"My Globo","difficult":[2],"duration_time":[323],"url_image":"/images/p147770325185407.jpg","preparation":"hay un lugar que yo me sé","quality":[3]},"1553324444":{"id":1553324444,"name":"home","difficult":[3],"duration_time":[60],"url_image":"/images/p147751801164728.jpg","preparation":"Un día que ahora ya no recuerdo","quality":[5]}}
+{
+  "1553356909": {
+    "id": 1553356909,
+    "name": "Arroz con pollo",
+    "difficult": [
+      1,
+      2
+    ],
+    "duration_time": [
+      100
+    ],
+    "url_image": "/images/601tr.png",
+    "preparation": "This is an individual exercise. However, you will be giving feedback to the other members of your peer code-review group on the solutions they present, as well as receiving feedback from them.\r\nCreate a public repo in your Github profile. This project should be part of your personal portfolio.",
+    "quality": [
+      2
+    ],
+    "difficult_display": "Easy"
+  },
+  "1553363477": {
+    "id": 1553363477,
+    "name": "Caramelos de cianuro",
+    "difficult": [
+      2,
+      2
+    ],
+    "duration_time": [
+      89
+    ],
+    "url_image": "/images/DSC05858.JPG",
+    "preparation": "The :name is a parameter in the URL, in the example it will match /hello/sergio, /hello/kattya and /hello/whatever.\r\nThen in our code we use the params hash to access the value of that parameter using the name of the parameter.\r\nWhere does params come from? Its created by Sinatra in the DSL, you don’t need to define it.\r\nNow, you can print params.inspect to display all the values",
+    "quality": [
+      2
+    ],
+    "difficult_display": "Medium"
+  },
+  "1553363789": {
+    "id": 1553363789,
+    "name": "Rubia sol morena",
+    "difficult": [
+      3
+    ],
+    "duration_time": [
+      200
+    ],
+    "url_image": "/images/DSC05700.JPG",
+    "preparation": "As a user, I want the recipes to have pictures of each step and the final result, to check how to do them.\r\n\r\n",
+    "quality": [
+      5
+    ],
+    "difficult_display": "Hard"
+  }
+}

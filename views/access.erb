@@ -1,21 +1,17 @@
 <div class="page-access">
-  <div class="login">
-    <h2>Login</h2>
-    <label for="uname">Choose a username: </label>
-    <form action="/access" method="POST">
-      <input type="text" id="uname" name="name" value="<%= @name %>" placeholder="Existing User">
-      <input type="submit" value="Enter">
+  <div class="access-form login">
+    <h2 class="tac">Login</h2>
+    <form class="column" ction="/access" method="POST">
+      <input class="input" type="text" id="uname" name="name" value="<%= @name %>" placeholder="Username">
+      <input class="button" type="submit" value="Enter">
     </form>
   </div>
-  <div class="register">
-    <h2>Create account</h2>
-    <label for="uname">Choose a username: </label>
-    <form action="/signup" method="POST">
-      <input type="text" id="name" name="newuser" value="<%= @newuser %>" placeholder="new user"
+  <div class="access-form register">
+    <h2 class="tac">Create account</h2>
+    <form class="column" action="/signup" method="POST">
+      <input class="input" type="text" id="name" name="newuser" value="<%= @newuser %>" placeholder="New user"
         pattern="^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$">
-      <div>
-        <input type="submit" value="Register">
-      </div>
+        <input class="button" type="submit" value="Register">
     </form>
   </div>
 </div>

@@ -21,12 +21,19 @@ end
 get "/dashboard/:id_user" do
   @id_user = params["id_user"]
   @users = JSON.parse(File.read("model/users.json"))
+  @name_user = @users[@id_user]["name"]
   if @id_user.include?("search")
-    @recipes = JSON.parse(File.read("model/search.json"))
+    @recipes = JSON.parse()
   else
     @recipes = JSON.parse(File.read("model/recipes.json"))
-    @user_recipes = @users[@id_user]["recipes"].map do |id_recipe|
-      @recipes[id_recipe.to_s]
+    if @name_user == "admin"
+      recipes_all = []
+      @recipes.each { |key, recipe| recipes_all << @recipes[key] }
+      @recipes = recipes_all
+    else
+      @recipes = @users[@id_user]["recipes"].map do |id_recipe|
+        @recipes[id_recipe.to_s]
+      end
     end
   end
   erb :dashboard, { :layout => :base }
@@ -59,13 +66,15 @@ post "/add-recipe" do
   save_image(params)
   new_id = Time.now.getutc.to_i
   json_recipes = JSON.parse(File.read("model/recipes.json"))
-  json_recipes[new_id] = {"id"=> new_id,
+  json_recipes[new_id] = {
+    "id"=> new_id,
     "name" => params["name"],
     "difficult" => [params["difficult"].to_i],
     "duration_time" => [params["duration_time"].to_i],
     "url_image" => "/images/#{params[:file][:filename]}",
     "preparation" => params["preparation"],
-    "quality" => [params["qualitly"].to_i]
+    "quality" => [params["qualitly"].to_i],
+    "difficult_display" => define_display_difficulty(params["difficult"].to_i)
   }
   File.write("model/recipes.json", JSON.generate(json_recipes))
 

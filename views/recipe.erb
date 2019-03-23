@@ -1,39 +1,53 @@
-<h1><%= @recipe["name"] %></h1>
-<p>quality: <%="*" * @recipe["quality"][0] %></p>
+<div class="page-recipe">
+  <div class="main-content">
+    <h1 class="title"><%= @recipe["name"] %></h1>
+    <div class="features row">
+      <div class="show-quality">
+        <% @recipe["quality"][0].times do %>
+        <img class="heart heart-on" src="/img/heart.svg" alt="" width="20">
+        <% end %>
+        <% (5 - @recipe["quality"][0]).times do %>
+        <img class="heart heart-off" src="/img/heart.svg" alt="" width="20">
+        <% end %>
+      </div>
+      <span>| <%= @recipe["difficult_display"]%> | <%= @recipe["duration_time"][0] %> minutes
+      </span>
+    </div>
 
-<form action="/recipe-quality" method="POST">
-  <label for="">RATE THIS RECIPE</label>
-  <select name="quality">
-    <option value="" disabled="disabled" selected>Choose quality</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <input type="hidden" name="id" value="<%= @recipe["id"]%>">
-  <input type="submit" />
-</form>
+    <img class="image-recipe" src=<%= @recipe["url_image"] %> width="640" height="480">
+  </div>
+  <p class="description"><%= @recipe["preparation"] %></p>
 
-<p>DIFFICULTY: <%= @recipe["difficult_display"] %></p>
-<form action="/recipe-difficulty" method="POST">
-  <select id="dificultad" name="difficulty">
-    <option value="" disabled="disabled" selected>Choose difficulty</option>
-    <option value="1">Easy</option>
-    <option value="2">Medium</option>
-    <option value="3">Hard</option>
-  </select>
-  <input type="hidden" name="id" value="<%= @recipe["id"] %>">
-  <input type="submit" />
-</form>
+  <div class="evaluation">
+    <h2>Send your feedback about <%= @recipe["name"] %></h2>
+    <form class="feedback-form" action="/recipe-quality" method="POST">
+      <select class="input feedback-input" name="quality">
+        <option value="" disabled="disabled" selected>Quality</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <input type="hidden" name="id" value="<%= @recipe["id"]%>">
+      <input class="button" type="submit" value="Send" />
+    </form>
 
-<p>PREPARATION TIME: <%= @recipe["duration_time"][0] %> minutos</p>
-Had a different preparation time?
-<form action="/recipe-duration-time" method="POST">
-  <input type="number" name="duration-time" placeholder="Enter your time" />
-  <input type="submit" />
-  <input type="hidden" name="id" value="<%=@recipe["id"]%>">
-</form>
+    <form class="feedback-form" action="/recipe-difficulty" method="POST">
+      <select class="input feedback-input" id="dificultad" name="difficulty">
+        <option value="" disabled="disabled" selected>Difficulty</option>
+        <option value="1">Easy</option>
+        <option value="2">Medium</option>
+        <option value="3">Hard</option>
+      </select>
+      <input type="hidden" name="id" value="<%= @recipe["id"] %>">
+      <input class="button" type="submit" value="Send" />
+    </form>
 
-<p>PREPARATION: <%= @recipe["preparation"] %></p>
-<img src = "<%= @recipe["url_image"] %>" width="400">
+    <form class="feedback-form" action="/recipe-duration-time" method="POST">
+      <input class="input feedback-input" type="number" name="duration-time" placeholder="Enter your time" />
+      <input class="button" type="submit" value="Send" />
+      <input type="hidden" name="id" value="<%=@recipe["id"]%>">
+    </form>
+  </div>
+</div>
