@@ -6,10 +6,10 @@
       <h1 class="title"><a href="/recipes/<%= recipe["id"] %>"><%= recipe["name"] %></a></h1>
       <div class="features row">
         <div class="show-quality">
-          <% recipe["quality"].times do %>
+          <% recipe["quality"][0].times do %>
           <img class="heart heart-on" src="/img/heart.svg" alt="" width="20">
           <% end %>
-          <% (5 - recipe["quality"]).times do %>
+          <% (5 - recipe["quality"][0]).times do %>
           <img class="heart heart-off" src="/img/heart.svg" alt="" width="20">
           <% end %>
         </div>

@@ -1,32 +1,48 @@
-<h1>New Recipe</h1>
-<hr />
-<form action="">
-  <label for="">Name</label>
-  <input type="text" name="name" />
-  <br />
-  <label for="">Difficulty</label>
-  <select name="difficult" id="">
-    <option disabled="disabled" selected="selected" value="">Choose an option</option>
-    <option value="easy">Easy</option>
-    <option value="medium">Medium</option>
-    <option value="hard">Hard</option>
-  </select>
-  <br />
-  <label for="">Duration time</label>
-  <input type="text" value="" placeholder="00:00" />
-  <br />
-  <label for="">Url's image</label>
-  <input type="text" placeholder="Paste the image's URL">
-  <br />
-  <label for="">Preparation</label>
-  <br />
-  <textarea name="" id="" cols="30" rows="10" placeholder="Recipes's preparation"></textarea>
-  <br />
-  <input type="submit" value="save">
-</form>
-
-<h1>Upload Image</h1>
-  <form action="/save_image" method="POST" enctype="multipart/form-data">
-      <input type="file" name="file">
-      <input type="submit" value="Upload image" >
+<div class="list-recipe">
+  <h1 class="title">New Recipe</h1>
+  <form action="/add-recipe" method="POST" enctype="multipart/form-data">
+    <input class="input" type="hidden" name="id_user" value=<%= @id_user %> />
+    <div class="input-block">
+    </div>
+    <div class="input-block">
+      <label class="label" for="">Name recipe</label>
+      <input class="input" type="text" name="name" />
+    </div>
+    <div class="input-block">
+      <label class="label" for="">Difficulty</label>
+      <select class="input" name="difficult" id="">
+        <option disabled="disabled" selected="selected" value="">Choose an option</option>
+        <option value="1">Easy</option>
+        <option value="2">Medium</option>
+        <option value="3">Hard</option>
+      </select>
+    </div>
+    <div class="input-block">
+      <label class="label" for="">Quality</label>
+      <select class="input" id="calidad" name="qualitly">
+        <option value="" disabled="disabled">---Enter your quality--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <div class="input-block">
+      <label class="label" for="">Duration time in minutes</label>
+      <input class="input" type="number" name="duration_time" value="" placeholder="How many minutes?" />
+    </div>
+    <div class="input-block">
+      <label class="label" for="">Image</label>
+      <input class="" type="file" name="file">
+    </div>
+    <div class="input-block">
+      <label class="label" for="">Preparation</label>
+      <textarea class="input area" name="preparation" id="" cols="50" rows="10"
+        placeholder="Recipes's preparation"></textarea>
+    </div>
+    <div class="input-block">
+      <input class="button" type="submit" value="Save">
+    </div>
   </form>
+</div>

@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title></title>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>RESAIPS!</title>
+</head>
+
+<body>
+  <div class="content">
     <header>
-      <div>
-        <h4>Login</h4>
-        <form action="/access" method="POST">
-          <label for="">Usuario</label>
-          <input type="text" id="uname" name="name" value="<%= @name %>" placeholder="Existing User" />
-          <input type="submit" value="Enter"/>
+      <a href="/" class="logo">{RESAIPS}</a><br>
+      <div class="right menu">
+        <form class="search" action="/search" method="POST">
+          <input class="input" type="text" name="recipe_title" required>
+          <input type="hidden" name="name" value="<%= params[:name]%>"/>
+          <input class="button" type="submit" value="Search" />
         </form>
+        <a class="access" href="/access">Login</a>
       </div>
-      <div>
-        <h4>Register</h4>
-        <form action="/signup" method="POST">
-          <label>Usuario</label>
-          <input type="text" value="<%= @newuser %>" name="newuser" placeholder="Usuario" pattern="^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$"/>
-          <input type="submit" />
-        </form>
-      </div>
-      <p><h1> hola soy <%= params[:name] %></h1><p>
     </header>
     <hr>
-    <br />
     <%= yield %>
-    <br />
-    <hr>
-    <footer>Soy el footer</footer>
-  </body>
+    <footer>
+      {codeable} - 2019
+    </footer>
+  </div>
+</body>
+
 </html>

@@ -1,41 +1,53 @@
-<img src="<%= "/images/#{@filename}" %>" width="300" height="150" />
+<div class="page-recipe">
+  <div class="main-content">
+    <h1 class="title"><%= @recipe["name"] %></h1>
+    <div class="features row">
+      <div class="show-quality">
+        <% @recipe["quality"][0].times do %>
+        <img class="heart heart-on" src="/img/heart.svg" alt="" width="20">
+        <% end %>
+        <% (5 - @recipe["quality"][0]).times do %>
+        <img class="heart heart-off" src="/img/heart.svg" alt="" width="20">
+        <% end %>
+      </div>
+      <span>| <%= @recipe["difficult_display"]%> | <%= @recipe["duration_time"][0] %> minutes
+      </span>
+    </div>
 
- <% @recipes.each do |key, recipe| %>
-   <h1><%= recipe["name"] %></h1>
-   <p> quality: <%="*" * recipe["quality"]%></p>
-    <form action="/recipe-qualitly" method="POST">
-   --- RATE THIS RECIPE:
-    <select id="calidad" name="qualitly">
-      <option value="" disabled= "disabled">---Enter your quality--</option>
-      <option value="1" <% if recipe["quality"] == 1 %>selected<% end %>>1</option>
-      <option value="2" <% if recipe["quality"] == 2 %>selected<% end %>>2</option>
-      <option value="3" <% if recipe["quality"] == 3 %>selected<% end %>>3</option>
-    </select>
-    <input type="hidden" name="id" value="<%=recipe["id"]%>">
-    <input type="submit">
+    <img class="image-recipe" src=<%= @recipe["url_image"] %> width="640" height="480">
+  </div>
+  <p class="description"><%= @recipe["preparation"] %></p>
+
+  <div class="evaluation">
+    <h2>Send your feedback about <%= @recipe["name"] %></h2>
+    <form class="feedback-form" action="/recipe-quality" method="POST">
+      <select class="input feedback-input" name="quality">
+        <option value="" disabled="disabled" selected>Quality</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <input type="hidden" name="id" value="<%= @recipe["id"]%>">
+      <input class="button" type="submit" value="Send" />
     </form>
 
-  <p> DIFFICULT: <%= "*" * recipe["difficult"] %>  </p>
-   <form action="/recipe-difficulty" method="POST">
-   --- DIFFICULTY:
-    <select id="dificultad" name="difficulty">
-      <option value="" disabled= "disabled" >--Enter your level of difficult--</option>
-      <option value="1" <% if recipe["difficult"]== 1 %>selected<% end %>>Easy</option>
-      <option value="2" <% if recipe["difficult"]== 2 %>selected<% end %>>Medium</option>
-      <option value="3" <% if recipe["difficult"]== 3 %>selected<% end %>>Hard</option>
-    </select>
-    <input type="hidden" name="id" value="<%=recipe["id"]%>">
-    <input type="submit">
+    <form class="feedback-form" action="/recipe-difficulty" method="POST">
+      <select class="input feedback-input" id="dificultad" name="difficulty">
+        <option value="" disabled="disabled" selected>Difficulty</option>
+        <option value="1">Easy</option>
+        <option value="2">Medium</option>
+        <option value="3">Hard</option>
+      </select>
+      <input type="hidden" name="id" value="<%= @recipe["id"] %>">
+      <input class="button" type="submit" value="Send" />
     </form>
-   <p>PREPARATION TIME: <%= recipe["duration_time"]%> minutos</p>
-   Had a different preparation time?
-   <form action="/recipe-duration-time" method="POST">
-    <input type="number" name="duration-time" placeholder="Enter your time">
-    <input type="submit" >
-    <input type="hidden" name="id" value="<%=recipe["id"]%>">
-   </form> 
-   <p>PREPARATION: <%= recipe["preparation"] %></p>
-   <img src = "<%= recipe["url_image"] %>">
- <% end %>
 
-
+    <form class="feedback-form" action="/recipe-duration-time" method="POST">
+      <input class="input feedback-input" type="number" name="duration-time" placeholder="Enter your time" />
+      <input class="button" type="submit" value="Send" />
+      <input type="hidden" name="id" value="<%=@recipe["id"]%>">
+    </form>
+  </div>
+</div>

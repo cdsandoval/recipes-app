@@ -1,29 +1,36 @@
-<form action="/" method="POST">
-  <input type="submit" value="Add new recipe" />
-</form>
+<div class="list-recipe">
+  <div class="dashboard_head">
+    <h1 class="title"><%= @name_user.capitalize %>'s recipes</h1>
+    <a class="new-recipe button" href=<%= "/add-recipe/#{@id_user}"%>>Add new recipe</a>
+  </div>
 
-<form action="/search" method="POST">
-  <input type="text" name="recipe_title">
-    <input type="hidden" name="name" value="<%= params[:name]%>"/>
-  <input type="submit" value="Search"/>  
-</form>
-
-
-
-<% @recipes.each do |key,recipe| %>
-  <% @users.each do |key1,value|%>
-    <% if value["name"] == params[:name] && value["recipes"].include?(key.to_i) %>
-      <h1><%= recipe["name"]%></h1>
-      <img src = "<%= recipe["url_image"] %>">
-      <p>PREPARATION TIME: <%= recipe["duration_time"]%>  minutes</p>
-      <p>PREPARATION: <%= recipe["preparation"] %></p>
-      <p>DIFFICULTY: <%= recipe["difficult"]%></p>
-      <p>QUALITY: <%= recipe["quality"] %></p>
-      <form action="/delete-recipe" method="POST" onsubmit="return confirm('Are you sure you want to delete the following recipe?')">
-        <input type="hidden" name="id" value="<%=key%>" />
-        <input type="hidden" name="name" value="<%= params[:name]%>"/>
-        <input type="submit" value="Delete" />
-      </form> 
-    <% end %>
+  <% @recipes.each do |recipe| %>
+    <div class="item oh">
+      <img class="image left" src="<%= recipe["url_image"] %>" width="120" height="90">
+      <div class="left">
+        <h1 class="title"><a href="/recipes/<%= recipe["id"] %>"><%= recipe["name"] %></a></h1>
+        <div class="features row">
+          <div class="show-quality">
+            <% recipe["quality"][0].times do %>
+            <img class="heart heart-on" src="/img/heart.svg" alt="" width="20">
+            <% end %>
+            <% (5 - recipe["quality"][0]).times do %>
+            <img class="heart heart-off" src="/img/heart.svg" alt="" width="20">
+            <% end %>
+          </div>
+          <span>| <%= recipe["difficult_display"]%> | <%= recipe["duration_time"][0] %> minutes
+          </span>
+        </div>
+      </div>
+      <form class="right" action="/delete-recipe" method="POST"
+        onsubmit="return confirm('Are you sure you want to delete the following recipe?')">
+        <input type="hidden" name="id_recipe" value="<%= recipe["id"] %>" />
+        <input type="hidden" name="name" value="<%= recipe["name"] %>" />
+        <input type="hidden" name="id_user" value="<%= @id_user %>" />
+        <input class="button -second" type="submit" value="Delete" />
+      </form>
+    </div>
   <% end %>
+</div>
+<% if false %>
 <% end %>

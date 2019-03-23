@@ -1,22 +1,19 @@
 {
-  "1": {
-    "id": 1,
-    "name": "Estofado de pavo",
-    "difficult": "easy",
-    "duration_time": 30,
-    "url_image": "/image/locro.jpg",
-    "quality": 3,
-    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
-    "author": 1
-  },
-  "4": {
-    "id": 4,
-    "name": "Adobo de pavo",
-    "difficult": "easy",
-    "duration_time": 30,
-    "url_image": "/image/locro.jpg",
-    "quality": 3,
-    "preparation": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit deleniti error aperiam consectetur at. Excepturi, voluptates pariatur cupiditate modi vero eum dolor animi blanditiis saepe molestiae veritatis ex facere fugit perferendis tempore voluptatem rerum perspiciatis velit. Tempore praesentium quisquam velit quaerat asperiores molestias fuga voluptatibus ratione. Facere veritatis ex minima, eius quam consequatur quo.",
-    "author": 1
+  "1553356909": {
+    "id": 1553356909,
+    "name": "Arroz con pollo",
+    "difficult": [
+      1,
+      2
+    ],
+    "duration_time": [
+      100
+    ],
+    "url_image": "/images/601tr.png",
+    "preparation": "This is an individual exercise. However, you will be giving feedback to the other members of your peer code-review group on the solutions they present, as well as receiving feedback from them.\r\nCreate a public repo in your Github profile. This project should be part of your personal portfolio.",
+    "quality": [
+      2
+    ],
+    "difficult_display": "Easy"
   }
 }
