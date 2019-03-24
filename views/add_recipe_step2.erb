@@ -1,0 +1,24 @@
+<div class="list-recipe">
+  <h1 class="title">Teach your recipe</h1>
+  <form action="/add-recipe/step2" method="POST" enctype="multipart/form-data">
+    <input class="input" type="hidden" name="id_user" value=<%= params["id_user"] %> />
+    <input class="input" type="hidden" name="name" value=<%= params["name"] %> />
+    <input class="input" type="hidden" name="difficult" value=<%= params["difficult"] %> />
+    <input class="input" type="hidden" name="qualitly" value=<%= params["qualitly"] %> />
+    <input class="input" type="hidden" name="duration_time" value=<%= params["duration_time"] %> />
+    <% params["steps"].to_i.times do |index| %>
+    <h2>Step <%= index+1 %></h2>
+    <div class="input-block">
+      <label class="" for="">Upload image</label>
+      <input class="" type="file" name="image[<%= index+1 %>]" required>
+    </div>
+    <div class="input-block">
+      <textarea class="input area" name="preparation[<%= index+1 %>]" id="" cols="60" rows="3"
+        placeholder="Step's instructions" required></textarea>
+    </div>
+    <% end %>
+    <div class="input-block">
+      <input class="button" type="submit" value="Save">
+    </div>
+  </form>
+</div>

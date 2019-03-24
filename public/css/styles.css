@@ -266,8 +266,9 @@ header .search .button{
   list-style: disc;
 }
 
-.page-recipe .main-content{
-  text-align: center;
+.page-recipe .steps{
+  width: 768px;
+  margin: auto;
 }
 
 .page-recipe .main-content .features{

@@ -6,7 +6,7 @@
 
   <% @recipes.each do |recipe| %>
     <div class="item oh">
-      <img class="image left" src="<%= recipe["url_image"] %>" width="120" height="75">
+      <img class="image left" src="<%= recipe["images"][-1] %>" width="120" height="75">
       <div class="left">
         <h1 class="title"><a href="/recipes/<%= recipe["id"] %>"><%= recipe["name"] %></a></h1>
         <div class="features row">

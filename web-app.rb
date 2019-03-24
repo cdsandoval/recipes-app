@@ -57,39 +57,55 @@ get "/recipes/:id_recipe" do
   erb :recipe, { :layout => :base }
 end
 
+get %r"/add-recipe/step2" do
+  erb :add_recipe_step2, { :layout => :base }
+end
+
 get "/add-recipe/:id_user" do
   @id_user = params["id_user"]
   erb :add_recipe, { :layout => :base}
 end
 
 post "/add-recipe" do
-  save_image(params)
+  id_user = params["id_user"]
+  name = params["name"][0..79].gsub(" ", "_")
+  difficult = params["difficult"]
+  qualitly = params["qualitly"]
+  duration_time = params["duration_time"]
+  steps = params["steps"]
+  redirect "/add-recipe/step2?id_user=#{id_user}&name=#{name}&difficult=#{difficult}&qualitly=#{qualitly}&duration_time=#{duration_time}&steps=#{steps}"
+end
+
+post "/add-recipe/step2" do
+  save_image(params["image"].values)
   new_id = Time.now.getutc.to_i
+  # Save new recipe
   json_recipes = JSON.parse(File.read("model/recipes.json"))
   json_recipes[new_id] = {
     "id"=> new_id,
-    "name" => params["name"][0..79],
+    "name" => params["name"].gsub("_", " "),
     "difficult" => [params["difficult"].to_i],
     "duration_time" => [params["duration_time"].to_i],
-    "url_image" => "/images/#{params[:file][:filename]}",
-    "preparation" => params["preparation"],
     "quality" => [params["qualitly"].to_i],
-    "difficult_display" => define_display_difficulty(params["difficult"].to_i)
+    "difficult_display" => define_display_difficulty(params["difficult"].to_i),
+    "images" => params["image"].values.map { |fileimage| "/images/#{fileimage[:filename]}"},
+    "preparation" => params["preparation"].values
   }
   File.write("model/recipes.json", JSON.generate(json_recipes))
-
+  # Set recipe in user
   json_users = JSON.parse(File.read("model/users.json"))
   json_users[params["id_user"]]["recipes"] << new_id
   File.write("model/users.json", JSON.generate(json_users))
-
   redirect "/recipes/#{new_id}"
 end
 
-def save_image(params)
-  @filename = params[:file][:filename]
-  file = params[:file][:tempfile]
-  File.open("./public/images/#{@filename}", 'wb') do |f|
-    f.write(file.read)
+def save_image(arr_file_images)
+  arr_file_images.each do |file_image|
+    filename = file_image[:filename]
+    file = file_image[:tempfile]
+    File.open("./public/images/#{filename}", 'wb') do |f|
+      f.write(file.read)
+    end
   end
 end
 
@@ -136,10 +152,6 @@ end
 def delete_recipe_user(id_user, id_recipe)
   json_users = JSON.parse(File.read("model/users.json"))
   json_users[id_user.to_s]["recipes"].delete(id_recipe.to_i)
-  puts "AAAAAAAAAAAAAAAAAAAAAH"
-  puts json_users[id_user.to_s]["recipes"].inspect
-  puts "AAAAAAAAAAAAAAAAAAAAAH"
-
   File.write("model/users.json", JSON.generate(json_users))
 end
 
