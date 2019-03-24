@@ -42,8 +42,16 @@ end
 get "/dashboard/recipes/:name" do
   @word = params[:name]
   @users = JSON.parse(File.read("model/users.json"))
-  if @word.include?("search")
-    @recipes = JSON.parse(File.read("model/search.json"))
+  @search_list = JSON.parse(File.read("model/search.json"))  
+   
+  if params[:sort] == "difficulty"
+    @recipes = @search_list.sort_by { |k, v| prom(v["difficult"]) }
+  elsif params[:sort] == "quality"
+    @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse 
+  elsif params[:quality]
+    @recipes = @search_list.select { |k,v| v["quality"].join.to_i == params[:quality].to_i }
+  elsif @word.include?("search")
+    @recipes = @search_list
   else
     @recipes = JSON.parse(File.read("model/recipes.json"))
   end
@@ -156,12 +164,12 @@ def delete_recipe_user(id_user, id_recipe)
 end
 
 post "/search" do
-  @recipe_title = params["recipe_title"].downcase
+  $recipe_title = params["recipe_title"].downcase
   @name = params["name"]
   @recipe_list = read_recipes("model/recipes.json")
-  @recipes = @recipe_list.select {|key,value| value["name"].downcase.include?(@recipe_title)}
+  @recipes = @recipe_list.select {|key,value| value["name"].downcase.include?($recipe_title)}
   create_search("model/search.json",@recipes)
-  redirect "/dashboard/recipes/search?#{@recipe_title}"
+  redirect "/dashboard/recipes/search?#{$recipe_title}"
 end
 
 post "/recipe-difficulty" do
@@ -249,4 +257,15 @@ def prom(numbers)
   numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count
 end
 
-set :port, 8033
+set :port, 8000
+
+
+post "/sort" do
+  @sort_type = params["sort_type"]
+  @quality = params["quality_filter"]
+  if @quality == nil
+    redirect "/dashboard/recipes/search?sort=#{@sort_type}"
+  else
+    redirect "dashboard/recipes/search?quality=#{@quality}"
+  end
+end
