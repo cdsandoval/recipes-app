@@ -1,18 +1,7 @@
 require 'rspec-html-matchers'
 require "./web-app"
 require "rspec"
-# require "nokogiri"
 require "rack/test"
-
-# RSpec.configure do |config|
-#     config.include RSpecHtmlMatchers
-# end
-
-# RSpec::Matchers.define(:have_tag) do |name, content, attributes = {}|
-#     match do |html|
-#       # somehow figure out if `html` has the right tag.
-#     end
-# end  
 
 describe "web-app" do
     include RSpecHtmlMatchers
@@ -27,7 +16,7 @@ describe "web-app" do
         expect(response.status).to eq(200)
     end
     it "duration time check" do
-        response = post "/recipe-duration-time", {id:1553375939, duration_time: 35}
+        response = post "/recipe-duration-time", {id:1553394762, duration_time: 55}
         expect(response).to be_redirect
     end
 
@@ -37,7 +26,7 @@ describe "web-app" do
     end
 
     it "has a 'form' tag to get a different preparation time from a user" do
-        get "/recipes/1553356909"
+        get "/recipes/1553393266"
         expect(last_response.body).to have_tag('form', :with => { :action => "/recipe-duration-time", :method => "POST" }) do
             with_tag "input", :with => { :name => "duration-time", :type => 'number' }
         end
