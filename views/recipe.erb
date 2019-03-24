@@ -19,6 +19,7 @@
     <% @recipe["images"].count.times do |index| %>
     <div class="description"><%= @recipe["preparation"][index] %></div>
     <img class="image-recipe" src=<%= @recipe["images"][index] %> width="768" height="480">
+    <pre class="url_image tac"><%= @host + @recipe["images"][index] %></pre>
     <% end %>
   </div>
 

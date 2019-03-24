@@ -31,16 +31,15 @@
     "id": 1553394762,
     "name": "Lomo Saltado",
     "difficult": [
-      2,
-      0
+      2
     ],
     "duration_time": [
-      1
+      0
     ],
     "quality": [
       5
     ],
-    "difficult_display": "Easy",
+    "difficult_display": "Medium",
     "images": [
       "/images/lomo1.jpg",
       "/images/lomo2.jpg",
@@ -84,212 +83,54 @@
       "Sirve en un recipiente y espolvorea la canela en polvo"
     ]
   },
-  "1553397400": {
-    "id": 1553397400,
-    "name": "Arroz con leche",
+  "1553449218": {
+    "id": 1553449218,
+    "name": "Chaufon",
     "difficult": [
-      2
+      2,
+      0,
+      0
     ],
     "duration_time": [
-      30
-    ],
-    "quality": [
-      1
-    ],
-    "difficult_display": "Hard",
-    "images": [
-      "/images/leche3.jpg",
-      "/images/leche2.jpg",
-      "/images/leche3.jpg",
-      "/images/leche4.jpg"
-    ],
-    "preparation": [
-      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
-      "Retira la cáscara de canela",
-      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
-      "Sirve en un recipiente y espolvorea la canela en polvo"
-    ]
-  },
-  "1553397411": {
-    "id": 1553397411,
-    "name": "Arroz con leche",
-    "difficult": [
-      3
-    ],
-    "duration_time": [
-      30
-    ],
-    "quality": [
-      2
-    ],
-    "difficult_display": "Medium",
-    "images": [
-      "/images/leche3.jpg",
-      "/images/leche2.jpg",
-      "/images/leche3.jpg",
-      "/images/leche4.jpg"
-    ],
-    "preparation": [
-      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
-      "Retira la cáscara de canela",
-      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
-      "Sirve en un recipiente y espolvorea la canela en polvo"
-    ]
-  },
-  "1553397477": {
-    "id": 1553397477,
-    "name": "Arroz con leche",
-    "difficult": [
-      3
-    ],
-    "duration_time": [
-      30
-    ],
-    "quality": [
-      5
-    ],
-    "difficult_display": "Easy",
-    "images": [
-      "/images/leche3.jpg",
-      "/images/leche2.jpg",
-      "/images/leche3.jpg",
-      "/images/leche4.jpg"
-    ],
-    "preparation": [
-      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
-      "Retira la cáscara de canela",
-      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
-      "Sirve en un recipiente y espolvorea la canela en polvo"
-    ]
-  },
-  "1553397488": {
-    "id": 1553397488,
-    "name": "Arroz con leche",
-    "difficult": [
-      3
-    ],
-    "duration_time": [
-      30
-    ],
-    "quality": [
-      5
-    ],
-    "difficult_display": "Hard",
-    "images": [
-      "/images/leche3.jpg",
-      "/images/leche2.jpg",
-      "/images/leche3.jpg",
-      "/images/leche4.jpg"
-    ],
-    "preparation": [
-      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
-      "Retira la cáscara de canela",
-      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
-      "Sirve en un recipiente y espolvorea la canela en polvo"
-    ]
-  },
-  "1553397456": {
-    "id": 1553397456,
-    "name": "Arroz con leche",
-    "difficult": [
-      3
-    ],
-    "duration_time": [
-      30
-    ],
-    "quality": [
-      5
-    ],
-    "difficult_display": "Easy",
-    "images": [
-      "/images/leche3.jpg",
-      "/images/leche2.jpg",
-      "/images/leche3.jpg",
-      "/images/leche4.jpg"
-    ],
-    "preparation": [
-      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
-      "Retira la cáscara de canela",
-      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
-      "Sirve en un recipiente y espolvorea la canela en polvo"
-    ]
-  },
-  "1553397466": {
-    "id": 1553397466,
-    "name": "Arroz con leche",
-    "difficult": [
-      3
-    ],
-    "duration_time": [
-      30
+      49
     ],
     "quality": [
       4
     ],
-    "difficult_display": "Medium",
-    "images": [
-      "/images/leche3.jpg",
-      "/images/leche2.jpg",
-      "/images/leche3.jpg",
-      "/images/leche4.jpg"
-    ],
-    "preparation": [
-      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
-      "Retira la cáscara de canela",
-      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
-      "Sirve en un recipiente y espolvorea la canela en polvo"
-    ]
-  },
-  "1553397555": {
-    "id": 1553397555,
-    "name": "Arroz con leche",
-    "difficult": [
-      1
-    ],
-    "duration_time": [
-      30
-    ],
-    "quality": [
-      1
-    ],
     "difficult_display": "Easy",
     "images": [
-      "/images/leche3.jpg",
-      "/images/leche2.jpg",
-      "/images/leche3.jpg",
-      "/images/leche4.jpg"
+      "/images/arroz y sillao.JPG",
+      "/images/pollo-huevo.jpg",
+      "/images/chaufa.jpg"
     ],
     "preparation": [
-      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
-      "Retira la cáscara de canela",
-      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
-      "Sirve en un recipiente y espolvorea la canela en polvo"
+      "you need to cook the rice and then you can add the sillao to obtain better taste!",
+      "Then, the rice mixed with sillao wouldn't be something you just wanna eat, for that reason add fried chicken and cutted eggs",
+      "Finally, you need to mix everything and warm it until you think is ready to eat, enjoy! Optional: you can add wantan and tamarindo "
     ]
   },
-  "1553397666": {
-    "id": 1553397666,
-    "name": "Arroz con leche",
+  "1553465621": {
+    "id": 1553465621,
+    "name": "Pollo al sillao",
     "difficult": [
-      3
+      2
     ],
     "duration_time": [
-      30
+      120
     ],
     "quality": [
       5
     ],
-    "difficult_display": "Hard",
+    "difficult_display": "Medium",
     "images": [
-      "/images/leche3.jpg",
-      "/images/leche2.jpg",
-      "/images/leche3.jpg",
-      "/images/leche4.jpg"
+      "/images/pollosillao2.png",
+      "/images/pollosillao3.jpg",
+      "/images/pollosillao1.png"
     ],
     "preparation": [
-      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
-      "Retira la cáscara de canela",
-      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
-      "Sirve en un recipiente y espolvorea la canela en polvo"
+      "First you need to buy some ingredients like rice, sillao, oil, and chicken to make it. Then, you need to put the rice in the pot.",
+      "Second, you need to check if the rice is well done. because you can continue frying the chicken until it becomes ready to eat.",
+      "Finally, we could mix everything and includes the sillao in the rice and start enjoying this delicious food!"
     ]
   }
 }
