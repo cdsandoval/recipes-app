@@ -1,5 +1,5 @@
 <div class="page-recipe">
-  <div class="main-content">
+  <div class="main-content tac">
     <h1 class="title"><%= @recipe["name"] %></h1>
     <div class="features row">
       <div class="show-quality">
@@ -13,10 +13,14 @@
       <span>| <%= @recipe["difficult_display"]%> | <%= @recipe["duration_time"][0] %> minutes
       </span>
     </div>
-
-    <img class="image-recipe" src=<%= @recipe["url_image"] %> width="768" height="480">
+    <img class="image-recipe" src=<%= @recipe["images"][-1] %> width="768" height="480">
   </div>
-  <div class="description"><%= @recipe["preparation"] %></div>
+  <div class="steps">
+    <% @recipe["images"].count.times do |index| %>
+    <div class="description"><%= @recipe["preparation"][index] %></div>
+    <img class="image-recipe" src=<%= @recipe["images"][index] %> width="768" height="480">
+    <% end %>
+  </div>
 
   <div class="evaluation">
     <h2>Send your feedback about <%= @recipe["name"] %></h2>
