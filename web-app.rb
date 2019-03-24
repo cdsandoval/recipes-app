@@ -175,7 +175,7 @@ end
 
 post "/recipe-quality" do
   id_recipe = params["id"]
-  var = JSON.parse(  File.read("model/recipes.json"))
+  var = JSON.parse(File.read("model/recipes.json"))
   var[id_recipe]["quality"] << params["quality"].to_i
   var[id_recipe]["quality"] = [prom(var[id_recipe]["quality"])]
   var = JSON.generate(var)
@@ -237,4 +237,4 @@ def prom(numbers)
   numbers.reduce(0) {|n1,n2| n1 + n2}/numbers.count
 end
 
-set :port, 8000
+set :port, 8033
