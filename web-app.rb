@@ -43,9 +43,12 @@ end
 
 get "/dashboard/:id_user" do
   @id_user = params["id_user"]
-  @users = read_users()
+  @users = JSON.parse(File.read("model/users.json"))
   @name_user = @users[@id_user]["name"]
-  @recipes =   read_recipes()
+  if @id_user.include?("search")
+    @recipes = JSON.parse()
+  else
+    @recipes = JSON.parse(File.read("model/recipes.json"))
     if @name_user == "admin"
       recipes_all = []
       @recipes.each { |key, recipe| recipes_all << @recipes[key] }
@@ -55,7 +58,7 @@ get "/dashboard/:id_user" do
         @recipes[id_recipe.to_s]
       end
     end
-  
+  end
   erb :dashboard, { :layout => :base }
 end
 
@@ -260,7 +263,7 @@ def read_search
 end
 
 def delete_recipe(filename, id)
-  @recipe_list = read_recipes("model/recipes.json")
+  @recipe_list = read_recipes()
   @recipe_list.delete(id)
   create_search(filename,@recipe_list)
 end
@@ -288,7 +291,7 @@ end
 
 def authentic(username)
   # Return id of the username or false if the username don't exist
-  user = read_recipes("model/users.json")
+  user = read_users()
   username_match = user.select { |key, hash| hash["name"] == username }
   if username_match.count > 0
     return username_match.first[1]["id"]
