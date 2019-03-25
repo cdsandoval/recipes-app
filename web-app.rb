@@ -15,12 +15,11 @@ get "/sort/:data" do
   @search_list = JSON.parse(File.read("model/recipes.json"))  
    
   if params[:sort] == "difficulty"
-    @recipes = changes_to_numbers_to_sort(@search_list)
-    @recipes = @recipes.sort_by { |k,v| v["difficult_display"].to_i }
-    @recipes = changes_to_strings(@search_list)
+    levels = ["Easy","Medium","Hard"]   
+    @recipes = @search_list.sort_by { |k,v| levels.index(v["difficult_display"]) }  
     @recipes = prom_rankings_recipes(@recipes)
   elsif params[:sort] == "quality"
-    @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse 
+    @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }
     prom_rankings_recipes(@recipes)
   elsif params[:difficult]
     @recipes = @search_list.select { |k,v| v["difficult_display"] == params[:difficult]}
@@ -32,7 +31,7 @@ get "/sort/:data" do
     @recipes = @search_list
     prom_rankings_recipes(@recipes)
   else
-    @recipes = JSON.parse(File.read("model/recipes.json"))
+    @recipes = read_recipes("model/recipes.json")
     prom_rankings_recipes(@recipes)
   end
   erb :index, { :layout => :base }
@@ -216,7 +215,7 @@ end
 
 post "/recipe-difficulty" do
   id_recipe = params["id"]
-  var = JSON.parse(File.read("model/recipes.json"))
+  var = read_recipes("model/recipes.json")
   var[id_recipe]["difficult"] << params["difficulty"].to_i
   var[id_recipe]["difficult_display"] = define_display_difficulty(var[id_recipe]["difficult"].reduce(:+)/var[id_recipe]["difficult"].size.to_f)
   var = JSON.generate(var)
@@ -237,7 +236,7 @@ end
 
 post "/recipe-quality" do
   id_recipe = params["id"]
-  var = JSON.parse(File.read("model/recipes.json"))
+  var = read_recipes("model/recipes.json")
   var[id_recipe]["quality"] << params["quality"].to_i
   var[id_recipe]["quality"] = [prom(var[id_recipe]["quality"])]
   var = JSON.generate(var)
@@ -247,7 +246,7 @@ end
 
 post "/recipe-duration-time" do
   id_recipe = params["id"]
-  var = JSON.parse(  File.read("model/recipes.json"))
+  var = read_recipes("model/recipes.json")
   var[id_recipe]["duration_time"] << params["duration-time"].to_i
   var[id_recipe]["duration_time"] = [prom(var[id_recipe]["duration_time"])]
   var = JSON.generate(var)
@@ -292,26 +291,6 @@ def prom_rankings_recipes(recipes)
     recipe["difficult"] = prom(recipe["difficult"]).to_i
     recipe
   end
-end
-
-def changes_to_numbers_to_sort(list)
-  list.each { |k, v| 
-    v["difficult_display"] == "Easy" ? 
-    v["difficult_display"] = 1 :  
-    v["difficult_display"] == "Medium" ?
-    v["difficult_display"] = 2 :
-    v["difficult_display"] = 3
-  }
-end
-
-def changes_to_strings(list)
-  list.each { |k,v| 
-    v["difficult_display"] == 1 ? 
-    v["difficult_display"] = "Easy" :  
-    v["difficult_display"] == 2 ?
-    v["difficult_display"] = "Medium" :
-    v["difficult_display"] = "Hard"
-  }
 end
 
 def authentic(username)
