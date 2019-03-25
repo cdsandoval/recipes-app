@@ -1,0 +1,359 @@
+{
+  "1553393266": {
+    "id": 1553393266,
+    "name": "Arroz con pollo",
+    "difficult": [
+      2
+    ],
+    "duration_time": [
+      35
+    ],
+    "quality": [
+      2
+    ],
+    "difficult_display": "Medium",
+    "images": [
+      "/images/pollo-1.jpg",
+      "/images/pollo-2.jpg",
+      "/images/pollo-3.jpg",
+      "/images/pollo-4.jpg",
+      "/images/pollo-5.jpg"
+    ],
+    "preparation": [
+      "Salpimentar y freír las presas de pollo en aceite caliente. Retirar presas. Dorar en ese mismo aceite los ajos, la cebolla, el ají y el culantro.",
+      "Colocar las presas de pollo nuevamente, añadir la cerveza y seguir cocinando hasta que el pollo esté listo.",
+      "Retirar las presas, sin dejar que se enfríen. Incorporar el arroz, las arvejas, el choclo y el pimiento. Mezclar bien.",
+      "Agregar el agua, rectificando la sazón y llevar a hervir. Bajar el fuego y seguir cocinando 20 minutos más hasta que el arroz esté cocido.",
+      "Servir el arroz con las presas bien calientes y decorar con ensalada de palta o cebolla, eso depende de cada persona."
+    ]
+  },
+  "1553394762": {
+    "id": 1553394762,
+    "name": "Lomo Saltado",
+    "difficult": [
+      2,
+      0,
+      3,
+      3,
+      0
+    ],
+    "duration_time": [
+      22
+    ],
+    "quality": [
+      5
+    ],
+    "difficult_display": "Medium",
+    "images": [
+      "/images/lomo1.jpg",
+      "/images/lomo2.jpg",
+      "/images/lomo3.jpg",
+      "/images/lomo4.jpg",
+      "/images/lomo5.jpg",
+      "/images/lomo6.jpg"
+    ],
+    "preparation": [
+      "Corta el lomo en trozos (bastones) más o menos gruesos (3cm x 1cm) y condiméntalos con ajo molido, comino, orégano y una cuchara de vinagre. Déjalo reposar unos 10 minutos para que coja sabor. Calienta la sartén a fuego alto con un poco de aceite",
+      "Cuando veas que empieza a salir un poquito de humo, entonces agrega la carne y fríela por unos segundos, el tiempo dependerá de que tan caliente este la sartén. A continuación, resérvala en un bol y tápala para que conserve el calor",
+      "Ahora en la misma sartén agrega la cebolla picada, el tomate, el ají amarillo y un poquito de aceite. Fríe todo por unos segundos y agrega un poco de caldo de carne, salsa de soja (sillao) y el vinagre. Agrega la carne que habías reservado, mezcla todo con movimientos de sartén (sin utensilio para no maltratar el tomate) y después de unos 30 segundos más o menos agrega la cebolla china y finalmente un poco de culantro picado (cilantro)",
+      "El Lomo Saltado tiene que estar jugoso, por eso, si es necesario corrige agregando un poco de caldo de carne",
+      "Sirve en un plato casi la totalidad del lomo y deja un poco para mezclar con las papas fritas. Agrega las papas fritas al resto de lomo saltado en la sartén, mézclalo y vuelve a servir todo encima.",
+      "En el Perú nos encanta el arroz, así que este plato también va acompañado de arroz blanco"
+    ]
+  },
+  "1553397486": {
+    "id": 1553397486,
+    "name": "Arroz con leche",
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      3
+    ],
+    "difficult_display": "Easy",
+    "images": [
+      "/images/leche3.jpg",
+      "/images/leche2.jpg",
+      "/images/leche3.jpg",
+      "/images/leche4.jpg"
+    ],
+    "preparation": [
+      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
+      "Retira la cáscara de canela",
+      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
+      "Sirve en un recipiente y espolvorea la canela en polvo"
+    ]
+  },
+  "86": {
+    "id": 86,
+    "name": "Arroz con leche",
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      3
+    ],
+    "difficult_display": "Easy",
+    "images": [
+      "/images/leche3.jpg",
+      "/images/leche2.jpg",
+      "/images/leche3.jpg",
+      "/images/leche4.jpg"
+    ],
+    "preparation": [
+      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
+      "Retira la cáscara de canela",
+      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
+      "Sirve en un recipiente y espolvorea la canela en polvo"
+    ]
+  },
+  "87": {
+    "id": 87,
+    "name": "Arroz con leche",
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      3
+    ],
+    "difficult_display": "Easy",
+    "images": [
+      "/images/leche3.jpg",
+      "/images/leche2.jpg",
+      "/images/leche3.jpg",
+      "/images/leche4.jpg"
+    ],
+    "preparation": [
+      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
+      "Retira la cáscara de canela",
+      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
+      "Sirve en un recipiente y espolvorea la canela en polvo"
+    ]
+  },
+  "88": {
+    "id": 88,
+    "name": "Arroz con leche",
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      3
+    ],
+    "difficult_display": "Easy",
+    "images": [
+      "/images/leche3.jpg",
+      "/images/leche2.jpg",
+      "/images/leche3.jpg",
+      "/images/leche4.jpg"
+    ],
+    "preparation": [
+      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
+      "Retira la cáscara de canela",
+      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
+      "Sirve en un recipiente y espolvorea la canela en polvo"
+    ]
+  },
+  "1553397666": {
+    "id": 1553397666,
+    "name": "Arroz con leche",
+    "difficult": [
+      3
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      5
+    ],
+    "difficult_display": "Hard",
+    "images": [
+      "/images/leche3.jpg",
+      "/images/leche2.jpg",
+      "/images/leche3.jpg",
+      "/images/leche4.jpg"
+    ],
+    "preparation": [
+      "Cocina en una olla el arroz con las tres tazas de agua, la canela, los clavos de olor, las pasas (opcional), la cáscara de naranja a fuego medio hasta que el arroz se haya cocido y el agua evaporado",
+      "Retira la cáscara de canela",
+      "Agrega la leche condensada, la leche evaporada y cocina a fuego lento hasta que el arroz quede en su punto. Justo después añade la vainilla, mezcla y cocina por cinco minutos más",
+      "Sirve en un recipiente y espolvorea la canela en polvo"
+    ]
+  },
+  "93469": {
+    "id": 93469,
+    "name": "Arroz con leche",
+    "difficult": [
+      2
+    ],
+    "duration_time": [
+      25
+    ],
+    "quality": [
+      3
+    ],
+    "difficult_display": "Medium",
+    "images": [
+      "/images/leche4.jpg",
+      "/images/leche3.jpg"
+    ],
+    "preparation": [
+      "Esta es una receta deliciosa.",
+      "Para el desayuno o para la cena. Siempre cae bien."
+    ]
+  },
+  "83469": {
+    "id": 83469,
+    "name": "Peanut butter cookies",
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      23
+    ],
+    "quality": [
+      3
+    ],
+    "difficult_display": "Easy",
+    "images": [
+      "/images/peanut1.jpg",
+      "/images/peanut2.jpg",
+      "/images/peanut3.jpg",
+      "/images/peanut4.jpg",
+      "/images/peanut5.jpg"
+    ],
+    "preparation": [
+      "Preheat oven to 350 degrees F (175 degrees C).",
+      "Mix 1 cup of peanut butter, 1 cup of white sugar, and an egg together in a bowl using an electric mixer until smooth and creamy.",
+      "Roll mixture into small balls and arrange on a baking sheet; flatten each with a fork, making a criss-cross pattern.",
+      "Bake in the preheated oven for 10 minutes.",
+      "Cool cookies on the baking sheet for 2 minutes before moving to a plate."
+    ]
+  },
+  "73469": {
+    "id": 73469,
+    "name": "Chocolate pudding",
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      15
+    ],
+    "quality": [
+      4
+    ],
+    "difficult_display": "Easy",
+    "images": [
+      "/images/chocolate1.jpg",
+      "/images/chocolate2.jpg",
+      "/images/chocolate3.jpg",
+      "/images/chocolate4.jpg"
+    ],
+    "preparation": [
+      "In a microwave-safe bowl, whisk together the sugar, cocoa and cornstarch. Whisk in milk a little at a time so the mixture does not have any dry lumps. ",
+      "Place in the microwave, and cook for 3 minutes on high. Stir, then cook at 1 minute intervals, stirring between cooking times for 2 to 4 minutes, or until shiny and thick. Stir in vanilla.",
+      "Place a piece of plastic wrap directly on the surface of the pudding to prevent a skin from forming, and chill in the refrigerator. ",
+      "Serve cold and enjoy."
+    ]
+  },
+  "63469": {
+    "id": 63469,
+    "name": "Cookies n Cream Mug Cake",
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      10
+    ],
+    "quality": [
+      1
+    ],
+    "difficult_display": "Easy",
+    "images": [
+      "/images/cookies1.jpg",
+      "/images/cookies2.jpg",
+      "/images/cookies3.jpg",
+      "/images/cookies4.jpg",
+      "/images/cookies5.jpg"
+    ],
+    "preparation": [
+      "Combine ¼ of a cup of white chocolate chips and 3 tablespoons of milk in an oversized microwave-safe mug. Microwave for about 40 seconds. Mix with a small whisk until chocolate is completely melted.",
+      "Add 4 tablespoons of all-purpose flour, ¼ of a teaspoon of baking powder, and ½ a tablespoon oil and whisk until batter is smooth.",
+      "Smash Oreos and mix them with the batter.",
+      "Cook in microwave for about 1 minute. Let cake cool a few minutes before eating. Cake is best consumed while still warm."
+    ]
+  },
+  "53469": {
+    "id": 53469,
+    "name": "Roasted parmesan chicken and tomatoes",
+    "difficult": [
+      2
+    ],
+    "duration_time": [
+      25
+    ],
+    "quality": [
+      5
+    ],
+    "difficult_display": "Medium",
+    "images": [
+      "/images/roasted1.jpg",
+      "/images/roasted2.jpg",
+      "/images/roasted3.jpg",
+      "/images/roasted4.jpg",
+      "/images/roasted5.jpg",
+      "/images/roasted6.jpg",
+      "/images/roasted7.jpg"
+    ],
+    "preparation": [
+      "Preheat oven to 450°F.",
+      "Arrange 4 chicken breast fillets on an aluminum foil-lined baking sheet and season with kosher salt and black pepper.",
+      "Stir together panko breadcrumbs (¼ c.), grated Parmesan (¼ c.), olive oil (1 tbsp), chopped parsley (1 tbsp), and one chopped garlic clove.",
+      "Spread Dijon mustard on each chicken breast and sprinkle with breadcrumb mixture.",
+      "Arrange Campari tomatoes (1 lb.) around chicken.",
+      "Bake until chicken is just cooked through, 14 to 16 minutes.",
+      "Serve with a side salad and garlic bread."
+    ]
+  },
+  "43469": {
+    "id": 43469,
+    "name": "Sponge cake",
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      23
+    ],
+    "quality": [
+      5
+    ],
+    "difficult_display": "Easy",
+    "images": [
+      "/images/sponge1.jpg",
+      "/images/sponge2.jpg",
+      "/images/sponge3.jpg",
+      "/images/sponge4.jpg",
+      "/images/sponge5.jpg",
+      "/images/sponge6.jpg"
+    ],
+    "preparation": [
+      "Preheat oven to 350°F.",
+      "Separate egg whites and yolks (4). Beat egg whites until stiff peaks start forming.",
+      "In another bowl, mix egg yolks with 4 tablespoons of sugar and 4 tablespoons of self-rising flour until sugar is dissolved or until the batter turns lighter.",
+      "Add egg whites in a gentle way.",
+      "Bake in a pan covered with baking sheet for 15 minutes.",
+      "Serve it with powdered sugar and ice cream."
+    ]
+  }
+}

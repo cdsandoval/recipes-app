@@ -3,6 +3,10 @@ require "erb"
 require "sinatra/reloader"
 require "json"
 
+PATH_RECIPES = "model/recipes.v1.json"
+PATH_SEARCH = "model/search.v1.json"
+PATH_USERS = "model/users.v1.json"
+
 get "/" do
   @recipes = read_recipes()
   prom_rankings_recipes(@recipes)
@@ -31,7 +35,7 @@ get "/sort/:data" do
     @recipes = @search_list
     prom_rankings_recipes(@recipes)
   else
-    @recipes = read_recipes("model/recipes.json")
+    @recipes = read_recipes(PATH_RECIPES)
     prom_rankings_recipes(@recipes)
   end
   erb :index, { :layout => :base }
@@ -43,12 +47,12 @@ end
 
 get "/dashboard/:id_user" do
   @id_user = params["id_user"]
-  @users = JSON.parse(File.read("model/users.json"))
+  @users = JSON.parse(File.read(PATH_USERS))
   @name_user = @users[@id_user]["name"]
   if @id_user.include?("search")
     @recipes = JSON.parse()
   else
-    @recipes = JSON.parse(File.read("model/recipes.json"))
+    @recipes = JSON.parse(File.read(PATH_RECIPES))
     if @name_user == "admin"
       recipes_all = []
       @recipes.each { |key, recipe| recipes_all << @recipes[key] }
@@ -124,11 +128,11 @@ post "/add-recipe/step2" do
     "images" => params["image"].values.map { |fileimage| "/images/#{fileimage[:filename]}"},
     "preparation" => params["preparation"].values
   }
-  File.write("model/recipes.json", JSON.generate(json_recipes))
+  File.write(PATH_RECIPES, JSON.generate(json_recipes))
   # Set recipe in user
   json_users = read_users()
   json_users[params["id_user"]]["recipes"] << new_id
-  File.write("model/users.json", JSON.generate(json_users))
+  File.write(PATH_USERS, JSON.generate(json_users))
   redirect "/recipes/#{new_id}"
 end
 
@@ -168,7 +172,7 @@ post "/signup" do
     "name" => @newuser,
     "recipes" => []
   }
-  File.write("model/users.json", JSON.generate(@users))
+  File.write(PATH_USERS, JSON.generate(@users))
   redirect "/dashboard/#{@new_id }"
 end
 
@@ -176,16 +180,22 @@ post "/delete-recipe" do
   @id_recipe = params["id_recipe"]
   @name = params["name"]
   @id_user = params["id_user"]
-  delete_recipe("model/recipes.json", @id_recipe)
-  delete_recipe("model/search.json", @id_recipe)
+  delete_recipe(PATH_RECIPES, @id_recipe)
+  delete_recipe(PATH_SEARCH, @id_recipe)
   delete_recipe_user(@id_user, @id_recipe)
   redirect "/dashboard/#{@id_user}"
 end
 
 def delete_recipe_user(id_user, id_recipe)
   json_users = read_users()
-  json_users[id_user.to_s]["recipes"].delete(id_recipe.to_i)
-  File.write("model/users.json", JSON.generate(json_users))
+  if json_users[id_user.to_s]["name"] == "admin"
+    json_users.each do |key, user|
+      user["recipes"].delete(id_recipe.to_i)
+    end
+  else
+    json_users[id_user.to_s]["recipes"].delete(id_recipe.to_i)
+  end
+  File.write(PATH_USERS, JSON.generate(json_users))
 end
 
 post "/search" do
@@ -193,7 +203,7 @@ post "/search" do
   @name = params["name"]
   @recipe_list = read_recipes()
   @recipes = @recipe_list.select {|key,value| value["name"].downcase.include?($recipe_title)}
-  create_search("model/search.json",@recipes)
+  create_search(PATH_SEARCH,@recipes)
   redirect "/dashboard/recipes/search?#{$recipe_title}"
 end
 
@@ -247,19 +257,19 @@ def create_user(filename,name)
 end
 
 def read_recipes
-  JSON.parse(File.read("model/recipes.json"))
+  JSON.parse(File.read(PATH_RECIPES))
 end
 
 def add_ranking(var)
-  File.write("model/recipes.json", var)
+  File.write(PATH_RECIPES, var)
 end
 
 def read_users
-  JSON.parse(File.read("model/users.json"))
+  JSON.parse(File.read(PATH_USERS))
 end
 
 def read_search
-  JSON.parse(File.read("model/search.json"))
+  JSON.parse(File.read(PATH_SEARCH))
 end
 
 def delete_recipe(filename, id)

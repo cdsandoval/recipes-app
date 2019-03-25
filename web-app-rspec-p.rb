@@ -23,7 +23,6 @@ describe "web-app" do
   it "Title of recipe is limited to 80 characters" do
     response = post "/add-recipe", RECIPE_STEP1
     name_size = Rack::Utils.parse_query(response.location)["name"].size
-    puts Rack::Utils.parse_query(response.location)["name"]
     expect(name_size).to be < 81
   end
 
