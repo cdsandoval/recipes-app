@@ -47,6 +47,14 @@ li{
   font-size: 16px;
 }
 
+.mr{
+  margin-right: 16px
+}
+
+.ml{
+  margin-left: 16px
+}
+
 .features .show-quality{
   display: grid;
   grid-column-gap: 4px;
@@ -184,6 +192,15 @@ header .search .button{
 }
 
 /* Recipes list - Home */
+.filter-bar{
+  margin-bottom: 32px;
+}
+
+.filter-bar .button{
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  margin-left: -4px;
+}
 
 .list-recipe{
   padding: 32px;
