@@ -14,6 +14,51 @@ get "/" do
   erb :index, { :layout => :base }
 end
 
+get "/:data" do
+  @word = params[:name]
+  @users = JSON.parse(File.read("model/users.json"))
+  @search_list = JSON.parse(File.read("model/recipes.json"))  
+   
+  if params[:sort] == "difficulty"
+    @recipes = @search_list.each { |k, v| 
+      v["difficult_display"] == "Easy" ? 
+      v["difficult_display"] = 1 :  
+      v["difficult_display"] == "Medium" ?
+      v["difficult_display"] = 2 :
+      v["difficult_display"] = 3
+    }
+    @recipes = @recipes.sort_by { |k,v| v["difficult_display"].to_i }
+    @recipes = @recipes.each { |k,v| 
+      v["difficult_display"] == 1 ? 
+      v["difficult_display"] = "Easy" :  
+      v["difficult_display"] == 2 ?
+      v["difficult_display"] = "Medium" :
+      v["difficult_display"] = "Hard"
+    }
+    @recipes = @recipes.each do |key, recipe|
+      recipe["quality"] = prom(recipe["quality"]).to_i
+      recipe["duration_time"] = prom(recipe["duration_time"])
+      recipe
+    end
+  elsif params[:sort] == "quality"
+    @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse 
+    prom_recipes(@recipes)
+  elsif params[:difficult]
+    @recipes = @search_list.select { |k,v| v["difficult_display"] == params[:difficult]}
+    prom_recipes(@recipes)
+  elsif params[:quality]
+    @recipes = @search_list.select { |k,v| v["quality"].join.to_i == params[:quality].to_i }
+    prom_recipes(@recipes)
+  elsif @word.include?("search")
+    @recipes = @search_list
+    prom_recipes(@recipes)
+  else
+    @recipes = JSON.parse(File.read("model/recipes.json"))
+    prom_recipes(@recipes)
+  end
+  erb :index, { :layout => :base }
+end
+
 get "/access" do
   erb :access, { :layout => :base }
 end
@@ -44,10 +89,28 @@ get "/dashboard/recipes/:name" do
   @users = JSON.parse(File.read("model/users.json"))
   @search_list = JSON.parse(File.read("model/search.json"))  
    
+  
   if params[:sort] == "difficulty"
-    @recipes = @search_list.sort_by { |k, v| prom(v["difficult"]) }
+      @recipes = @search_list.each { |k, v| 
+        v["difficult_display"] == "Easy" ? 
+        v["difficult_display"] = 1 :  
+        v["difficult_display"] == "Medium" ?
+        v["difficult_display"] = 2 :
+        v["difficult_display"] = 3
+      }
+      @recipes = @recipes.sort_by { |k,v| v["difficult_display"].to_i }
+      @recipes = @recipes.each { |k,v| 
+        v["difficult_display"] == 1 ? 
+        v["difficult_display"] = "Easy" :  
+        v["difficult_display"] == 2 ?
+        v["difficult_display"] = "Medium" :
+        v["difficult_display"] = "Hard"
+      }
+     
   elsif params[:sort] == "quality"
     @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse 
+  elsif params[:difficult]
+    @recipes = @search_list.select { |k,v| v["difficult_display"] == params[:difficult]}
   elsif params[:quality]
     @recipes = @search_list.select { |k,v| v["quality"].join.to_i == params[:quality].to_i }
   elsif @word.include?("search")
@@ -243,6 +306,15 @@ def store_name(filename, string)
   end
 end
 
+def prom_recipes(recipes)
+  recipes = recipes.each do |key, recipe|
+    recipe["quality"] = prom(recipe["quality"]).to_i
+    recipe["duration_time"] = prom(recipe["duration_time"])
+    recipe["difficult"] = prom(recipe["difficult"]).to_i
+    recipe
+  end
+end
+
 def authentic(username)
   # Return id of the username or false if the username don't exist
   user = read_recipes("model/users.json")
@@ -263,9 +335,25 @@ set :port, 8000
 post "/sort" do
   @sort_type = params["sort_type"]
   @quality = params["quality_filter"]
-  if @quality == nil
-    redirect "/dashboard/recipes/search?sort=#{@sort_type}"
-  else
+  @difficult = params["difficult_filter"]
+  if @quality    
     redirect "dashboard/recipes/search?quality=#{@quality}"
+  elsif @difficult
+    redirect "dashboard/recipes/search?difficult=#{@difficult}"
+  else
+    redirect "/dashboard/recipes/search?sort=#{@sort_type}"
+  end
+end
+
+post "/sort_index" do
+  @sort_type = params["sort_type"]
+  @quality = params["quality_filter"]
+  @difficult = params["difficult_filter"]
+  if @quality    
+    redirect "/search?quality=#{@quality}"
+  elsif @difficult
+    redirect "/search?difficult=#{@difficult}"
+  else
+    redirect "/search?sort=#{@sort_type}"
   end
 end

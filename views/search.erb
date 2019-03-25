@@ -21,6 +21,16 @@
   <input type="submit" class="input feedback-input" value="Filter">
 </form>
   
+<form class="feedback-form" action="/sort" method="POST">
+  <select class="input feedback-input" name="difficult_filter" required>
+    <option value="" disabled="disabled" selected>Difficult</option>
+    <option value="Easy">Easy</option>
+    <option value="Medium">Medium</option>
+    <option value="Hard">Hard</option>    
+  </select>  
+  <input type="submit" class="input feedback-input" value="Filter">
+</form>
+
 </div>
 
 <div class="list-recipe">
