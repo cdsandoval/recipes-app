@@ -13,10 +13,10 @@ get "/sort/:data" do
   @word = params[:name]
   @users = read_users()
   @search_list = read_recipes()
-   
+
   if params[:sort] == "difficulty"
-    levels = ["Easy","Medium","Hard"]   
-    @recipes = @search_list.sort_by { |k,v| levels.index(v["difficult_display"].capitalize) }  
+    levels = ["Easy","Medium","Hard"]
+    @recipes = @search_list.sort_by { |k,v| levels.index(v["difficult_display"].capitalize) }
     @recipes = prom_rankings_recipes(@recipes)
   elsif params[:sort] == "quality"
     @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse
@@ -65,12 +65,12 @@ end
 get "/dashboard/recipes/:name" do
   @word = params[:name]
   @users = read_users()
-  @search_list = read_search()  
+  @search_list = read_search()
   if params[:sort] == "difficulty"
-    levels = ["Easy","Medium","Hard"]   
-    @recipes = @search_list.sort_by { |k,v| levels.index(v["difficult_display"].capitalize) } 
+    levels = ["Easy","Medium","Hard"]
+    @recipes = @search_list.sort_by { |k,v| levels.index(v["difficult_display"].capitalize) }
   elsif params[:sort] == "quality"
-    @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse 
+    @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse
   elsif params[:difficult]
     @recipes = @search_list.select { |k,v| v["difficult_display"] == params[:difficult]}
   elsif params[:quality]
@@ -84,6 +84,7 @@ get "/dashboard/recipes/:name" do
 end
 
 get "/recipes/:id_recipe" do
+  @host = request.url
   id_recipe = params["id_recipe"]
   @recipe = read_recipes()[id_recipe.to_s]
   erb :recipe, { :layout => :base }
@@ -309,7 +310,7 @@ post "/sort" do
   @sort_type = params["sort_type"]
   @quality = params["quality_filter"]
   @difficult = params["difficult_filter"]
-  if @quality    
+  if @quality
     redirect "dashboard/recipes/search?quality=#{@quality}"
   elsif @difficult
     redirect "dashboard/recipes/search?difficult=#{@difficult}"
@@ -322,7 +323,7 @@ post "/sort_index" do
   @sort_type = params["sort_type"]
   @quality = params["quality_filter"]
   @difficult = params["difficult_filter"]
-  if @quality    
+  if @quality
     redirect "/sort/search?quality=#{@quality}"
   elsif @difficult
     redirect "/sort/search?difficult=#{@difficult}"
