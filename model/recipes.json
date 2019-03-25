@@ -2,9 +2,15 @@
   "1553393266": {
     "id": 1553393266,
     "name": "Arroz con pollo",
-    "difficult": [2],
-    "duration_time": [35],
-    "quality": [3],
+    "difficult": [
+      2
+    ],
+    "duration_time": [
+      35
+    ],
+    "quality": [
+      4
+    ],
     "difficult_display": "Medium",
     "images": [
       "/images/pollo-1.jpg",
@@ -24,10 +30,17 @@
   "1553394762": {
     "id": 1553394762,
     "name": "Lomo Saltado",
-    "difficult": [2],
-    "duration_time": [55],
-    "quality": [5],
-    "difficult_display": "Medium",
+    "difficult": [
+      2,
+      0
+    ],
+    "duration_time": [
+      1
+    ],
+    "quality": [
+      5
+    ],
+    "difficult_display": "Easy",
     "images": [
       "/images/lomo1.jpg",
       "/images/lomo2.jpg",
@@ -48,9 +61,15 @@
   "1553397486": {
     "id": 1553397486,
     "name": "Arroz con leche",
-    "difficult": [1],
-    "duration_time": [30],
-    "quality": [3],
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      3
+    ],
     "difficult_display": "Easy",
     "images": [
       "/images/leche3.jpg",
@@ -68,9 +87,15 @@
   "1553397400": {
     "id": 1553397400,
     "name": "Arroz con leche",
-    "difficult": [2],
-    "duration_time": [30],
-    "quality": [1],
+    "difficult": [
+      2
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      1
+    ],
     "difficult_display": "Hard",
     "images": [
       "/images/leche3.jpg",
@@ -88,9 +113,15 @@
   "1553397411": {
     "id": 1553397411,
     "name": "Arroz con leche",
-    "difficult": [3],
-    "duration_time": [30],
-    "quality": [2],
+    "difficult": [
+      3
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      2
+    ],
     "difficult_display": "Medium",
     "images": [
       "/images/leche3.jpg",
@@ -108,9 +139,15 @@
   "1553397477": {
     "id": 1553397477,
     "name": "Arroz con leche",
-    "difficult": [3],
-    "duration_time": [30],
-    "quality": [5],
+    "difficult": [
+      3
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      5
+    ],
     "difficult_display": "Easy",
     "images": [
       "/images/leche3.jpg",
@@ -128,9 +165,15 @@
   "1553397488": {
     "id": 1553397488,
     "name": "Arroz con leche",
-    "difficult": [3],
-    "duration_time": [30],
-    "quality": [5],
+    "difficult": [
+      3
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      5
+    ],
     "difficult_display": "Hard",
     "images": [
       "/images/leche3.jpg",
@@ -148,9 +191,15 @@
   "1553397456": {
     "id": 1553397456,
     "name": "Arroz con leche",
-    "difficult": [3],
-    "duration_time": [30],
-    "quality": [5],
+    "difficult": [
+      3
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      5
+    ],
     "difficult_display": "Easy",
     "images": [
       "/images/leche3.jpg",
@@ -168,9 +217,15 @@
   "1553397466": {
     "id": 1553397466,
     "name": "Arroz con leche",
-    "difficult": [3],
-    "duration_time": [30],
-    "quality": [4],
+    "difficult": [
+      3
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      4
+    ],
     "difficult_display": "Medium",
     "images": [
       "/images/leche3.jpg",
@@ -188,9 +243,15 @@
   "1553397555": {
     "id": 1553397555,
     "name": "Arroz con leche",
-    "difficult": [1],
-    "duration_time": [30],
-    "quality": [1],
+    "difficult": [
+      1
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      1
+    ],
     "difficult_display": "Easy",
     "images": [
       "/images/leche3.jpg",
@@ -208,9 +269,15 @@
   "1553397666": {
     "id": 1553397666,
     "name": "Arroz con leche",
-    "difficult": [3],
-    "duration_time": [30],
-    "quality": [5],
+    "difficult": [
+      3
+    ],
+    "duration_time": [
+      30
+    ],
+    "quality": [
+      5
+    ],
     "difficult_display": "Hard",
     "images": [
       "/images/leche3.jpg",
