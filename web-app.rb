@@ -4,22 +4,22 @@ require "sinatra/reloader"
 require "json"
 
 get "/" do
-  @recipes = JSON.parse(File.read("model/recipes.json"))
+  @recipes = read_recipes()
   prom_rankings_recipes(@recipes)
   erb :index, { :layout => :base }
 end
 
 get "/sort/:data" do
   @word = params[:name]
-  @users = JSON.parse(File.read("model/users.json"))
-  @search_list = JSON.parse(File.read("model/recipes.json"))  
+  @users = read_users()
+  @search_list = read_recipes()
    
   if params[:sort] == "difficulty"
     levels = ["Easy","Medium","Hard"]   
-    @recipes = @search_list.sort_by { |k,v| levels.index(v["difficult_display"]) }  
+    @recipes = @search_list.sort_by { |k,v| levels.index(v["difficult_display"].capitalize) }  
     @recipes = prom_rankings_recipes(@recipes)
   elsif params[:sort] == "quality"
-    @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }
+    @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse
     prom_rankings_recipes(@recipes)
   elsif params[:difficult]
     @recipes = @search_list.select { |k,v| v["difficult_display"] == params[:difficult]}
@@ -43,12 +43,9 @@ end
 
 get "/dashboard/:id_user" do
   @id_user = params["id_user"]
-  @users = JSON.parse(File.read("model/users.json"))
+  @users = read_users()
   @name_user = @users[@id_user]["name"]
-  if @id_user.include?("search")
-    @recipes = JSON.parse()
-  else
-    @recipes = JSON.parse(File.read("model/recipes.json"))
+  @recipes =   read_recipes()
     if @name_user == "admin"
       recipes_all = []
       @recipes.each { |key, recipe| recipes_all << @recipes[key] }
@@ -58,33 +55,17 @@ get "/dashboard/:id_user" do
         @recipes[id_recipe.to_s]
       end
     end
-  end
+  
   erb :dashboard, { :layout => :base }
 end
 
 get "/dashboard/recipes/:name" do
   @word = params[:name]
-  @users = JSON.parse(File.read("model/users.json"))
-  @search_list = JSON.parse(File.read("model/search.json"))  
-   
-  
+  @users = read_users()
+  @search_list = read_search()  
   if params[:sort] == "difficulty"
-      @recipes = @search_list.each { |k, v| 
-        v["difficult_display"] == "Easy" ? 
-        v["difficult_display"] = 1 :  
-        v["difficult_display"] == "Medium" ?
-        v["difficult_display"] = 2 :
-        v["difficult_display"] = 3
-      }
-      @recipes = @recipes.sort_by { |k,v| v["difficult_display"].to_i }
-      @recipes = @recipes.each { |k,v| 
-        v["difficult_display"] == 1 ? 
-        v["difficult_display"] = "Easy" :  
-        v["difficult_display"] == 2 ?
-        v["difficult_display"] = "Medium" :
-        v["difficult_display"] = "Hard"
-      }
-     
+    levels = ["Easy","Medium","Hard"]   
+    @recipes = @search_list.sort_by { |k,v| levels.index(v["difficult_display"].capitalize) } 
   elsif params[:sort] == "quality"
     @recipes = @search_list.sort_by { |k, v| v["quality"].join.to_i }.reverse 
   elsif params[:difficult]
@@ -94,14 +75,14 @@ get "/dashboard/recipes/:name" do
   elsif @word.include?("search")
     @recipes = @search_list
   else
-    @recipes = JSON.parse(File.read("model/recipes.json"))
+    @recipes = read_recipes()
   end
   erb :search, { :layout => :base }
 end
 
 get "/recipes/:id_recipe" do
   id_recipe = params["id_recipe"]
-  file = File.read("model/recipes.json")
+  file = read_recipes()
   @recipe = JSON.parse(file)[id_recipe.to_s]
   erb :recipe, { :layout => :base }
 end
@@ -129,7 +110,7 @@ post "/add-recipe/step2" do
   save_image(params["image"].values)
   new_id = Time.now.getutc.to_i
   # Save new recipe
-  json_recipes = JSON.parse(File.read("model/recipes.json"))
+  json_recipes = read_recipes()
   json_recipes[new_id] = {
     "id"=> new_id,
     "name" => params["name"].gsub("_", " "),
@@ -142,7 +123,7 @@ post "/add-recipe/step2" do
   }
   File.write("model/recipes.json", JSON.generate(json_recipes))
   # Set recipe in user
-  json_users = JSON.parse(File.read("model/users.json"))
+  json_users = read_users()
   json_users[params["id_user"]]["recipes"] << new_id
   File.write("model/users.json", JSON.generate(json_users))
   redirect "/recipes/#{new_id}"
@@ -159,7 +140,7 @@ def save_image(arr_file_images)
 end
 
 get "/recipe/:difficult" do
-  list_recipe = read_recipes("model/recipes.json")
+  list_recipe = read_recipes()
   @recipes = list_recipe.select {|recipe| recipe["difficult"] == params["difficult"]}
   erb :recipe, { :layout => :base }
 end
@@ -178,7 +159,7 @@ end
 
 post "/signup" do
   @newuser = params["newuser"].downcase
-  @users = JSON.parse(File.read("model/users.json"))
+  @users = read_users()
   @new_id = Time.now.getutc.to_i
   @users[@new_id] = {"id"=> @new_id,
     "name" => @newuser,
@@ -199,7 +180,7 @@ post "/delete-recipe" do
 end
 
 def delete_recipe_user(id_user, id_recipe)
-  json_users = JSON.parse(File.read("model/users.json"))
+  json_users = read_users()
   json_users[id_user.to_s]["recipes"].delete(id_recipe.to_i)
   File.write("model/users.json", JSON.generate(json_users))
 end
@@ -207,7 +188,7 @@ end
 post "/search" do
   $recipe_title = params["recipe_title"].downcase
   @name = params["name"]
-  @recipe_list = read_recipes("model/recipes.json")
+  @recipe_list = read_recipes()
   @recipes = @recipe_list.select {|key,value| value["name"].downcase.include?($recipe_title)}
   create_search("model/search.json",@recipes)
   redirect "/dashboard/recipes/search?#{$recipe_title}"
@@ -215,11 +196,11 @@ end
 
 post "/recipe-difficulty" do
   id_recipe = params["id"]
-  var = read_recipes("model/recipes.json")
+  var = read_recipes()
   var[id_recipe]["difficult"] << params["difficulty"].to_i
   var[id_recipe]["difficult_display"] = define_display_difficulty(var[id_recipe]["difficult"].reduce(:+)/var[id_recipe]["difficult"].size.to_f)
   var = JSON.generate(var)
-  File.write("model/recipes.json", var)
+  add_ranking(var)
   redirect "/recipes/#{id_recipe}"
 end
 
@@ -236,21 +217,21 @@ end
 
 post "/recipe-quality" do
   id_recipe = params["id"]
-  var = read_recipes("model/recipes.json")
+  var = read_recipes()
   var[id_recipe]["quality"] << params["quality"].to_i
   var[id_recipe]["quality"] = [prom(var[id_recipe]["quality"])]
   var = JSON.generate(var)
-  File.write("model/recipes.json", var)
+  add_ranking(var)
   redirect "/recipes/#{id_recipe}"
 end
 
 post "/recipe-duration-time" do
   id_recipe = params["id"]
-  var = read_recipes("model/recipes.json")
+  var = read_recipes()
   var[id_recipe]["duration_time"] << params["duration-time"].to_i
   var[id_recipe]["duration_time"] = [prom(var[id_recipe]["duration_time"])]
   var = JSON.generate(var)
-  File.write("model/recipes.json", var)
+  add_ranking(var)
   redirect "/recipes/#{id_recipe}"
 end
 
@@ -262,8 +243,20 @@ def create_user(filename,name)
   end
 end
 
-def read_recipes(filename)
-  JSON.parse(File.read(filename))
+def read_recipes
+  JSON.parse(File.read("model/recipes.json"))
+end
+
+def add_ranking(var)
+  File.write("model/recipes.json", var)
+end
+
+def read_users
+  JSON.parse(File.read("model/users.json"))
+end
+
+def read_search
+  JSON.parse(File.read("model/search.json"))
 end
 
 def delete_recipe(filename, id)
