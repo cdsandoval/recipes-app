@@ -85,8 +85,7 @@ end
 
 get "/recipes/:id_recipe" do
   id_recipe = params["id_recipe"]
-  file = read_recipes()
-  @recipe = JSON.parse(file)[id_recipe.to_s]
+  @recipe = read_recipes()[id_recipe.to_s]
   erb :recipe, { :layout => :base }
 end
 
